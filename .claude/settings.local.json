@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(say -o /private/tmp/claude-501/-Users-Apple-Documents-SABI-MARKET/6bc90c00-d73e-491a-88dc-35a61e2f58b4/scratchpad/sample.aiff \"I buy fifty oranges for five thousand naira, sell two for two hundred naira today\")"
+    ]
+  }
+}
