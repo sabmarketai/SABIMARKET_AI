@@ -2,7 +2,7 @@
 
 Voice-first market assistant for Nigerian informal traders. This is a
 frontend-complete scaffold: real UI, real routing, real voice capture, real
-offline shell — with mock data standing in for the backend you'll add later.
+offline shell, with mock data standing in for the backend you'll add later.
 
 ## Stack
 
