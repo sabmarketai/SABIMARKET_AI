@@ -2,6 +2,8 @@ import re
 
 from pydantic import BaseModel
 
+import anthropic
+from openai import OpenAI
 from src.config.settings import settings
 from src.schemas.transaction import TransactionEntry, VoiceTransactionResponse
 
@@ -71,7 +73,7 @@ def _extract_mock(transcript: str) -> list[TransactionEntry]:
 
 
 def _extract_anthropic(transcript: str) -> list[TransactionEntry]:
-    import anthropic
+    
 
     client = anthropic.Anthropic(api_key=settings.llm_api_key)
     response = client.messages.parse(
@@ -85,7 +87,7 @@ def _extract_anthropic(transcript: str) -> list[TransactionEntry]:
 
 
 def _extract_openai_compatible(transcript: str) -> list[TransactionEntry]:
-    from openai import OpenAI
+    
 
     is_grok = settings.llm_provider == "grok"
     client = OpenAI(api_key=settings.llm_api_key, base_url="https://api.x.ai/v1" if is_grok else None)
