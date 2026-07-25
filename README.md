@@ -105,7 +105,7 @@ prose.
 ## Known gaps / next steps
 
 - No auth, no real backend — by design, per the brief.
-- `SpeechRecognition` is not a web standard and support varies; consider a
+- `SpeechRecognition` is not a web standard and support varies; consider 
   server-side Whisper-style endpoint for consistent transcription across
   devices, especially for Pidgin accuracy.
 - Icons in `public/icons/` are placeholders generated for this scaffold —
