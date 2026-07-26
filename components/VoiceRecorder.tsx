@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Mic, Square, Check, Pencil, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ParsedClause, parseTranscript, clausesToTransactions } from "@/lib/parseTransaction";
+import { extractTranscriptRemote } from "@/lib/api";
 import { useSabiMarketStore } from "@/lib/store";
 
 type RecordState = "idle" | "recording" | "reviewing";
@@ -48,6 +49,7 @@ export default function VoiceRecorder() {
   const [clauses, setClauses] = useState<ParsedClause[]>([]);
   const [supportsSpeech, setSupportsSpeech] = useState(true);
   const [micError, setMicError] = useState<string | null>(null);
+  const [isParsing, setIsParsing] = useState(false);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const addTransactions = useSabiMarketStore((s) => s.addTransactions);
 
@@ -99,15 +101,19 @@ export default function VoiceRecorder() {
     }
   }
 
-  function stopRecording(useSample = false) {
+  async function stopRecording(useSample = false) {
     recognitionRef.current?.stop();
     const finalTranscript =
       useSample || !transcript
         ? SAMPLE_TRANSCRIPTS[Math.floor(Math.random() * SAMPLE_TRANSCRIPTS.length)]
         : transcript;
     setTranscript(finalTranscript);
-    setClauses(parseTranscript(finalTranscript));
     setState("reviewing");
+
+    setIsParsing(true);
+    const remoteClauses = await extractTranscriptRemote(finalTranscript);
+    setClauses(remoteClauses ?? parseTranscript(finalTranscript));
+    setIsParsing(false);
   }
 
   function updateClause(index: number, patch: Partial<ParsedClause>) {
@@ -217,7 +223,11 @@ export default function VoiceRecorder() {
             &ldquo;{transcript}&rdquo;
           </p>
 
-          {clauses.length === 0 ? (
+          {isParsing ? (
+            <div className="rounded-card bg-white p-4 text-center text-sm text-indigo/60 shadow-card">
+              Thinking...
+            </div>
+          ) : clauses.length === 0 ? (
             <div className="rounded-card bg-white p-4 text-center text-sm text-indigo/60 shadow-card">
               I no fully understand that one. Try again, or say something like
               &ldquo;I sell 2 oranges for 200 naira&rdquo;.

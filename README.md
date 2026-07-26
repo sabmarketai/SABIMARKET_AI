@@ -33,7 +33,12 @@ const res = await fetch("http://192.168.100.13:8123/api/v1/voice/voice-transacti
 const data = await res.json();
 ```
 
-**Response shape** (see `src/schemas/transaction.py` for the source of truth):
+**Response shape** (see `src/schemas/transaction.py` for the source of truth). `action` is one of
+`"buy"`, `"sell"`, `"debt_owed"`, `"debt_paid"`, `"expense"`, `"waste"` — **the frontend currently only
+has UI/labels for `"buy"`/`"sell"` ("Bought"/"Sold" in `VoiceRecorder.tsx`, and `BackendTransaction.action`
+in `lib/api.ts` is still typed as just `"buy" | "sell"`)**. Whoever picks up frontend work next needs to
+extend those types and add a label/color for debt, expense, and waste entries — right now those come
+back correctly from the backend but would be mislabeled in the UI.
 
 ```json
 {

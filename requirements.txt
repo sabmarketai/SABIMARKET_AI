@@ -5,3 +5,4 @@ faster-whisper
 pydantic-settings
 anthropic
 openai
+word2number
