@@ -7,16 +7,16 @@ function formatNaira(amount: number): string {
 }
 
 const TREND_META = {
-  up: { icon: TrendingUp, tone: "text-pepper bg-pepper/10", label: "rising" },
-  down: { icon: TrendingDown, tone: "text-cassava bg-cassava/10", label: "falling" },
-  flat: { icon: Minus, tone: "text-indigo/50 bg-indigo/5", label: "steady" },
+  up: { icon: TrendingUp, tone: "text-secondary-foreground bg-secondary", label: "rising" },
+  down: { icon: TrendingDown, tone: "text-secondary-foreground bg-red", label: "falling" },
+  flat: { icon: Minus, tone: "text-secondary-foreground bg-amber", label: "steady" },
 } as const;
 
 export default function PriceCard({ price }: { price: MarketPrice }) {
   const meta = TREND_META[price.trend];
   const Icon = meta.icon;
   return (
-    <div className="rounded-card bg-white p-4 shadow-card">
+    <div className="rounded-lg bg-grey text-primary-foreground p-4 shadow-card">
       <div className="flex items-start justify-between">
         <div>
           <p className="font-display text-base font-semibold text-indigo">

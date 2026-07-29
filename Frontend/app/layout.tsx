@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Manrope, Space_Mono } from "next/font/google";
-import "./globals.css";
+import { Fraunces, Manrope, Space_Mono, Geist } from "next/font/google";
 import BottomNav from "@/components/BottomNav";
 import Header from "@/components/Header";
+import "./global.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -53,12 +56,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${manrope.variable} ${spaceMono.variable}`}>
+    <html
+      lang="en"
+      className={cn(
+        fraunces.variable,
+        manrope.variable,
+        spaceMono.variable,
+        "font-sans",
+        geist.variable,
+      )}
+    >
       <body className="font-sans">
-        <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-cream shadow-card">
-          <Header />
+        <div className="mx-auto flex min-h-dvh max-w-md flex-col text-foreground bg-white shadow-card p-4">
+          {/* <Header /> */}
           <main className="flex-1 overflow-y-auto pb-24">{children}</main>
-          <BottomNav />
+          {/* <BottomNav /> */}
         </div>
       </body>
     </html>

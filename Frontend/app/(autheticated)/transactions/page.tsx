@@ -23,8 +23,8 @@ export default function TransactionsPage() {
             key={f}
             onClick={() => setFilter(f)}
             className={clsx(
-              "rounded-full px-4 py-1.5 text-xs font-semibold capitalize",
-              filter === f ? "bg-indigo text-cream" : "bg-white text-indigo/60 shadow-card"
+              "rounded-full px-4 py-1.5 text-xs text-secondary-foreground font-semibold capitalize",
+              filter === f ? "bg-secondary text-cream" : "bg-grey text-indigo/60 shadow-card"
             )}
           >
             {f}
