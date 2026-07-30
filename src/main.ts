@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { BigIntInterceptor } from './common/interceptors/bigint.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,12 +23,13 @@ async function bootstrap() {
 );
 
 app.useGlobalInterceptors(
-  new TransformInterceptor(),
+  new BigIntInterceptor(),
+  // new TransformInterceptor(),
 );
 
-app.useGlobalFilters(
-  new HttpExceptionFilter(),
-);
+// app.useGlobalFilters(
+//   new HttpExceptionFilter(),
+// );
 
   const config = new DocumentBuilder()
     .setTitle('SabiMarket API')
@@ -35,7 +37,12 @@ app.useGlobalFilters(
       'Backend API for the SabiMarket AI voice-first market assistant.',
     )
     .setVersion('1.0')
-    .addBearerAuth()
+    .addBearerAuth({
+    type: 'http',
+    scheme: 'bearer',
+    bearerFormat: 'JWT',
+  },
+  'access-token',)
     .build();
 
 
@@ -44,9 +51,9 @@ app.useGlobalFilters(
 
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.PORT ?? 3001);
+  await app.listen(process.env.PORT ?? 3000);
 
-  console.log(`🚀 Backend running on http://localhost:3001`);
-  console.log(`📚 Swagger docs: http://localhost:3001/api`);
+  console.log(`🚀 Backend running on http://localhost:3000`);
+  console.log(`📚 Swagger docs: http://localhost:3000/api`);
 }
 bootstrap();

@@ -1,11 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
-import { ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { CreateInventoryItemDto } from "../dto/create-inventory-item.dto";
 import { UpdateInventoryItemDto } from "../dto/update-inventory-item.dto";
 import { AdjustStockDto } from "../dto/adjust-stock-item.dto";
 import { InventoryService } from "../inventory.service";
+import { CurrentUser } from "src/auth/decorators/current-user.decorator";
+import type { AuthUser } from "src/auth/interfaces/auth-user.interface";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 
+@ApiBearerAuth('access-token')
 @Controller('inventory')
+@UseGuards(JwtAuthGuard)
 @ApiTags('Inventory')
 export class InventoryController {
   constructor(
@@ -13,17 +18,18 @@ export class InventoryController {
   ) {}
 
   @Post()
-  create(@Body() dto: CreateInventoryItemDto) {
-    const userId = 'HARDCODED-FOR-NOW';
+  create(@Body() dto: CreateInventoryItemDto, @CurrentUser() user: AuthUser, ) {
+     console.log('Current User:', user);
+  console.log('DTO:', dto);
+    // const userId =  req.user.id;
 
-    return this.inventoryService.create(userId, dto);
+    return this.inventoryService.create(user.id, dto);
   }
 
   @Get()
-  findAll() {
-    const userId = 'HARDCODED-FOR-NOW';
+  findAll(@CurrentUser() user: AuthUser) {
 
-    return this.inventoryService.findAll(userId);
+    return this.inventoryService.findAll(user.id);
   }
 
   @Get(':id')

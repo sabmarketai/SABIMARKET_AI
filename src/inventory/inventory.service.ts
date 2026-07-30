@@ -7,24 +7,33 @@ import { UpdateInventoryItemDto } from './dto/update-inventory-item.dto';
 @Injectable()
 export class InventoryService {
 
-     constructor(
-            private readonly supabaseService: SupabaseService,
-            private readonly prisma: PrismaService,
-        ) { }
+    constructor(
+        private readonly supabaseService: SupabaseService,
+        private readonly prisma: PrismaService,
+    ) { }
 
     async create(
         userId: string,
         dto: CreateInventoryItemDto,
     ) {
-        return this.prisma.inventory_items.create({
-            data: {
-                user_id: userId,
-                item_name: dto.itemName,
-                quantity: dto.quantity,
-                unit: dto.unit,
-                average_cost: dto.averageCost,
-            },
-        });
+        console.log('User ID:', userId);
+        console.log('DTO:', dto);
+        try {
+            await this.prisma.$queryRaw`SELECT 1`;
+console.log('Database connection OK');
+            return await this.prisma.inventory_items.create({
+                data: {
+                    user_id: userId,
+                    item_name: dto.itemName,
+                    quantity: dto.quantity,
+                    unit: dto.unit,
+                    average_cost: dto.averageCost,
+                },
+            });
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 
     async findAll(userId: string) {
