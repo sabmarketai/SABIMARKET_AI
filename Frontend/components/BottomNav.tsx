@@ -2,77 +2,70 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LineChart, Mic, Users2, Settings } from "lucide-react";
+import { Home, LineChart, Package, Users2, Settings, Mic } from "lucide-react";
 import clsx from "clsx";
 
 const TABS = [
-  { href: "/dashboard", label: "Home", icon: Home, isCenter: false },
-  { href: "/market", label: "Market", icon: LineChart, isCenter: false },
-  { href: "/record", label: "Record", icon: Mic, isCenter: true },
-  { href: "/community", label: "Community", icon: Users2, isCenter: false },
-  { href: "/settings", label: "Settings", icon: Settings, isCenter: false },
+  { href: "/dashboard", label: "Home", icon: Home },
+  { href: "/market", label: "Market", icon: LineChart },
+  { href: "/inventory", label: "Inventory", icon: Package },
+  { href: "/community", label: "Community", icon: Users2 },
+  { href: "/settings", label: "Settings", icon: Settings },
 ] as const;
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const recordActive = pathname === "/record";
 
   return (
-    <nav
-      aria-label="Primary"
-      className="safe-bottom fixed bottom-0 left-1/2 z-40 w-full max-w-md -translate-x-1/2 border-t border-indigo/10 bg-cream/95 backdrop-blur"
-    >
-      <ul className="flex items-end justify-between px-2 pb-2 pt-2">
-        {TABS.map(({ href, label, icon: Icon, isCenter }) => {
-          const active = pathname === href;
-          if (isCenter) {
+    <>
+      {/* Floating Record button */}
+      <Link
+        href="/record"
+        aria-label="Record — log a sale or purchase by voice"
+        className={clsx(
+          "safe-bottom-offset fixed bottom-20 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-card transition-transform active:scale-95",
+          recordActive
+            ? "bg-secondary text-secondary-foreground"
+            : "bg-primary text-primary-foreground",
+        )}
+      >
+        <Mic size={24} className="text-indigo" strokeWidth={2.4} />
+      </Link>
+
+      <nav
+        aria-label="Primary"
+        className="safe-bottom fixed bottom-0 left-1/2 z-40 w-full max-w-md -translate-x-1/2 border-t border-indigo/10 bg-cream/95 backdrop-blur"
+      >
+        <ul className="flex items-end justify-between px-2 pb-2 pt-2">
+          {TABS.map(({ href, label, icon: Icon }) => {
+            const active = pathname === href;
             return (
-              <li
-                key={href}
-                className="flex-1 -translate-y-4  rounded-full text-center"
-              >
+              <li key={href} className="flex-1 text-center">
                 <Link
                   href={href}
-                  aria-label={`${label} — log a sale or purchase by voice`}
-                  className={clsx(
-                    "mx-auto flex h-16 w-16 flex-col items-center justify-center rounded-full shadow-card transition-transform active:scale-95",
-                    active
-                      ? "bg-secondary text-secondary-foreground"
-                      : "bg-primary text-primary-foreground",
-                  )}
+                  aria-current={active ? "page" : undefined}
+                  className="flex flex-col items-center gap-1 rounded-xl px-2 py-1.5"
                 >
-                  <Icon size={26} className="text-indigo" strokeWidth={2.4} />
+                  <Icon
+                    size={22}
+                    strokeWidth={2.2}
+                    className={active ? "text-primary" : "text-foreground"}
+                  />
+                  <span
+                    className={clsx(
+                      "text-[11px] font-medium",
+                      active ? "text-primary" : "text-foreground",
+                    )}
+                  >
+                    {label}
+                  </span>
                 </Link>
-                <span className="mt-1 block text-[11px] font-semibold text-indigo">
-                  {label}
-                </span>
               </li>
             );
-          }
-          return (
-            <li key={href} className="flex-1 text-center">
-              <Link
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className="flex flex-col items-center gap-1 rounded-xl px-2 py-1.5"
-              >
-                <Icon
-                  size={22}
-                  strokeWidth={2.2}
-                  className={active ? "text-primary" : "text-foreground"}
-                />
-                <span
-                  className={clsx(
-                    "text-[11px] font-medium",
-                    active ? "text-primary" : "foreground",
-                  )}
-                >
-                  {label}
-                </span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+          })}
+        </ul>
+      </nav>
+    </>
   );
 }
