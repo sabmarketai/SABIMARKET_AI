@@ -6,7 +6,7 @@ import { Home, LineChart, Mic, Users2, Settings } from "lucide-react";
 import clsx from "clsx";
 
 const TABS = [
-  { href: "/", label: "Home", icon: Home, isCenter: false },
+  { href: "/dashboard", label: "Home", icon: Home, isCenter: false },
   { href: "/market", label: "Market", icon: LineChart, isCenter: false },
   { href: "/record", label: "Record", icon: Mic, isCenter: true },
   { href: "/community", label: "Community", icon: Users2, isCenter: false },
@@ -26,13 +26,18 @@ export default function BottomNav() {
           const active = pathname === href;
           if (isCenter) {
             return (
-              <li key={href} className="flex-1 -translate-y-4 text-center">
+              <li
+                key={href}
+                className="flex-1 -translate-y-4  rounded-full text-center"
+              >
                 <Link
                   href={href}
                   aria-label={`${label} — log a sale or purchase by voice`}
                   className={clsx(
                     "mx-auto flex h-16 w-16 flex-col items-center justify-center rounded-full shadow-card transition-transform active:scale-95",
-                    active ? "bg-gold-dark" : "bg-gold"
+                    active
+                      ? "bg-secondary text-secondary-foreground"
+                      : "bg-primary text-primary-foreground",
                   )}
                 >
                   <Icon size={26} className="text-indigo" strokeWidth={2.4} />
@@ -53,12 +58,12 @@ export default function BottomNav() {
                 <Icon
                   size={22}
                   strokeWidth={2.2}
-                  className={active ? "text-indigo" : "text-indigo/40"}
+                  className={active ? "text-primary" : "text-foreground"}
                 />
                 <span
                   className={clsx(
                     "text-[11px] font-medium",
-                    active ? "text-indigo" : "text-indigo/40"
+                    active ? "text-primary" : "foreground",
                   )}
                 >
                   {label}

@@ -3,6 +3,7 @@
 import { useSabiMarketStore, unsyncedCount } from "@/lib/store";
 import { seedTransactions } from "@/lib/mockData";
 import { Languages, RotateCcw, Info } from "lucide-react";
+import Button from "@/components/atoms/Button";
 
 export default function SettingsPage() {
   const language = useSabiMarketStore((s) => s.language);
@@ -19,7 +20,9 @@ export default function SettingsPage() {
 
   return (
     <div className="px-5 pt-5">
-      <h1 className="font-display text-xl font-semibold text-indigo">Settings</h1>
+      <h1 className="font-display text-xl font-semibold">
+        Settings
+      </h1>
 
       <section className="mt-5 rounded-card bg-white p-4 shadow-card">
         <div className="mb-3 flex items-center gap-2 text-indigo">
@@ -33,7 +36,7 @@ export default function SettingsPage() {
               onClick={() => setLanguage(lang)}
               className={
                 language === lang
-                  ? "flex-1 rounded-full bg-indigo py-2 text-sm font-semibold capitalize text-cream"
+                  ? "flex-1 rounded-full bg-primary text-primary-foreground py-2 text-sm font-semibold capitalize text-cream"
                   : "flex-1 rounded-full border border-indigo/15 py-2 text-sm font-semibold capitalize text-indigo/60"
               }
             >
@@ -41,12 +44,12 @@ export default function SettingsPage() {
             </button>
           ))}
         </div>
-        <p className="mt-2 text-xs text-indigo/40">
+        <p className="mt-2 text-xs font-semibold">
           Controls the wording used across the app and voice prompts.
         </p>
       </section>
 
-      <section className="mt-4 rounded-card bg-white p-4 shadow-card">
+      <section className="mt-4 rounded-lg bg-grey text-primary-foreground p-4 shadow-card">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-sm font-semibold text-indigo">Sync status</h2>
@@ -68,7 +71,7 @@ export default function SettingsPage() {
 
       <button
         onClick={resetDemoData}
-        className="mt-4 flex w-full items-center justify-center gap-2 rounded-card bg-white p-4 text-sm font-semibold text-pepper shadow-card"
+        className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg  text-red p-4 text-sm font-semibold text-pepper shadow-card"
       >
         <RotateCcw size={16} /> Reset demo data
       </button>
@@ -76,9 +79,10 @@ export default function SettingsPage() {
       <section className="mt-4 flex items-start gap-2 rounded-card bg-indigo/5 p-4 text-xs text-indigo/60">
         <Info size={14} className="mt-0.5 shrink-0" />
         <p>
-          This build runs entirely on your device with sample data — no account or backend
-          yet. Data lives in this browser only. See the project README for how the real
-          sync, auth, and price-aggregation services plug in.
+          This build runs entirely on your device with sample data — no account
+          or backend yet. Data lives in this browser only. See the project
+          README for how the real sync, auth, and price-aggregation services
+          plug in.
         </p>
       </section>
     </div>

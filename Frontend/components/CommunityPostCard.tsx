@@ -3,10 +3,10 @@ import { AlertTriangle, Handshake, ShoppingBasket, MessageCircle } from "lucide-
 import clsx from "clsx";
 
 const TYPE_META = {
-  alert: { icon: AlertTriangle, tone: "bg-pepper/10 text-pepper", label: "Alert" },
-  supplier: { icon: ShoppingBasket, tone: "bg-cassava/10 text-cassava", label: "Supplier" },
-  buyer: { icon: Handshake, tone: "bg-gold/15 text-gold-dark", label: "Buyer" },
-  general: { icon: MessageCircle, tone: "bg-indigo/10 text-indigo", label: "General" },
+  alert: { icon: AlertTriangle, tone: "bg-red text-primary-foreground", label: "Alert" },
+  supplier: { icon: ShoppingBasket, tone: "bg-amber text-primary-foreground", label: "Supplier" },
+  buyer: { icon: Handshake, tone: "bg-secondary text-secondary-foreground", label: "Buyer" },
+  general: { icon: MessageCircle, tone: "bg-foreground text-primary-foreground", label: "General" },
 } as const;
 
 function timeAgo(iso: string): string {
@@ -19,7 +19,7 @@ export default function CommunityPostCard({ post }: { post: CommunityPost }) {
   const meta = TYPE_META[post.type];
   const Icon = meta.icon;
   return (
-    <div className="rounded-card bg-white p-4 shadow-card">
+    <div className="rounded-lg bg-grey text-primary-foreground p-4 shadow-card">
       <div className="mb-2 flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-indigo">{post.authorName}</p>

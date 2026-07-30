@@ -149,9 +149,9 @@ export default function VoiceRecorder() {
             <AnimatePresence>
               {state === "recording" && (
                 <>
-                  <span className="absolute h-full w-full animate-pulseRing rounded-full bg-gold/50" />
+                  <span className="absolute h-full w-full animate-pulseRing rounded-full bg-secondary" />
                   <span
-                    className="absolute h-full w-full animate-pulseRing rounded-full bg-gold/50"
+                    className="absolute h-full w-full animate-pulseRing rounded-full bg-secondary"
                     style={{ animationDelay: "0.6s" }}
                   />
                 </>
@@ -161,7 +161,7 @@ export default function VoiceRecorder() {
               whileTap={{ scale: 0.92 }}
               onClick={() => (state === "recording" ? stopRecording() : startRecording())}
               aria-label={state === "recording" ? "Stop recording" : "Start recording"}
-              className="relative z-10 flex h-28 w-28 items-center justify-center rounded-full bg-gold shadow-card"
+              className={`relative z-10 flex h-28 w-28 items-center justify-center rounded-full shadow-card ${state !== "recording" && "bg-grey"}`}
             >
               {state === "recording" ? (
                 <Square size={30} className="text-indigo" fill="currentColor" />
@@ -184,7 +184,7 @@ export default function VoiceRecorder() {
           )}
 
           {state === "recording" && transcript && (
-            <p className="mt-6 max-w-xs text-center text-sm text-indigo/70">&ldquo;{transcript}&rdquo;</p>
+            <p className="mt-6 max-w-xs text-center text-sm text-foreground/70">&ldquo;{transcript}&rdquo;</p>
           )}
 
           {state === "recording" && (
@@ -203,7 +203,7 @@ export default function VoiceRecorder() {
             </p>
           )}
           {micError && (
-            <p className="mt-4 max-w-xs text-center text-xs text-pepper">{micError}</p>
+            <p className="mt-4 max-w-xs text-center text-xs text-red">{micError}</p>
           )}
         </>
       )}
@@ -281,14 +281,14 @@ export default function VoiceRecorder() {
           <div className="mt-5 flex gap-3">
             <button
               onClick={discard}
-              className="flex-1 rounded-full border border-indigo/20 py-3 text-sm font-semibold text-indigo"
+              className="flex-1 rounded-full border border-indigo/20 py-3 text-sm font-semibold text-primary-foreground bg-red"
             >
               Discard
             </button>
             <button
               onClick={confirmSave}
               disabled={clauses.length === 0}
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-cassava py-3 text-sm font-semibold text-cream disabled:opacity-40"
+              className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-primary text-primary-foreground py-3 text-sm font-semibold text-cream disabled:opacity-40"
             >
               <Check size={16} /> Save {clauses.length > 1 ? "all" : ""}
             </button>

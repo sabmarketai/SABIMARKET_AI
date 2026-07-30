@@ -1,3 +1,4 @@
+import Button from "@/components/atoms/Button";
 import CommunityPostCard from "@/components/CommunityPostCard";
 import { seedCommunityPosts } from "@/lib/mockData";
 import { Plus } from "lucide-react";
@@ -9,17 +10,17 @@ export default function CommunityPage() {
     <div className="px-5 pt-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-xl font-semibold text-indigo">Community</h1>
-          <p className="mt-1 text-sm text-indigo/50">
+          <h1 className="font-display text-xl font-semibold ">Community</h1>
+          <p className="mt-1 text-sm text-indigo/50 max-w-70">
             Alerts, suppliers and buyers from your market associations.
           </p>
         </div>
-        <button
+        <Button
           aria-label="New post"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold text-indigo shadow-card"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-indigo shadow-card"
         >
-          <Plus size={20} />
-        </button>
+          <Plus size={20} color="white" />
+        </Button>
       </div>
       <div className="mt-5 space-y-3">
         {seedCommunityPosts.map((p) => (

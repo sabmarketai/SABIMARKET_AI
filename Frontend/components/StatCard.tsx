@@ -10,25 +10,33 @@ interface StatCardProps {
 }
 
 const TONE_MAP: Record<NonNullable<StatCardProps["tone"]>, string> = {
-  gold: "bg-gold/15 text-gold-dark",
-  cassava: "bg-cassava/10 text-cassava",
-  pepper: "bg-pepper/10 text-pepper",
-  indigo: "bg-indigo/10 text-indigo",
+  gold: "bg-amber text-secondary-foreground",
+  cassava: "bg-secondary text-secodary-foreground",
+  pepper: "bg-red text-primary-foreground",
+  indigo: "bg-secondary text-secondary-foreground",
 };
 
-export default function StatCard({ label, value, tone = "indigo", icon, sub }: StatCardProps) {
+export default function StatCard({
+  label,
+  value,
+  tone = "indigo",
+  icon,
+  sub,
+}: StatCardProps) {
   return (
-    <div className="rounded-card bg-white p-4 shadow-card">
+    <div className="rounded-lg bg-grey text-secondary-foreground p-4 shadow-card">
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium uppercase tracking-wide text-indigo/50">
           {label}
         </p>
         {icon && (
-          <span className={clsx("rounded-full p-1.5", TONE_MAP[tone])}>{icon}</span>
+          <span className={clsx("rounded-full p-1.5", TONE_MAP[tone])}>
+            {icon}
+          </span>
         )}
       </div>
-      <p className="mt-2 font-mono text-2xl font-bold text-indigo">{value}</p>
-      {sub && <p className="mt-1 text-xs text-indigo/50">{sub}</p>}
+      <p className="mt-2 font-mono text-2xl font-bold ">{value}</p>
+      {sub && <p className="mt-1 text-xs">{sub}</p>}
     </div>
   );
 }
