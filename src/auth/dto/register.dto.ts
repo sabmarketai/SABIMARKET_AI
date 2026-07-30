@@ -26,7 +26,7 @@ export class RegisterDto {
   })
   @IsOptional()
   @IsString()
-  phoneNumber?: string;
+  phoneNumber!: string;
 
   @ApiProperty({
     example: 'Balogun Market',
