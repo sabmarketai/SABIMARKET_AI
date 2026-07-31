@@ -51,9 +51,9 @@ app.useGlobalInterceptors(
 
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3001);
 
-  console.log(`🚀 Backend running on http://localhost:3000`);
-  console.log(`📚 Swagger docs: http://localhost:3000/api`);
+  console.log(`🚀 Backend running on http://localhost:3001`);
+  console.log(`📚 Swagger docs: http://localhost:3001/api`);
 }
 bootstrap();

@@ -3,6 +3,8 @@ import { SupabaseService } from 'src/supabase/supabase.service';
 import { RegisterDto } from './dto/register.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { LoginDto } from './dto/login.dto';
+import type { AuthUser } from './interfaces/auth-user.interface';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -55,11 +57,22 @@ export class AuthService {
                 user: data.user,
             };
         } catch (err) {
+            console.error('Prisma Error:', err);
             await supabase.auth.admin.deleteUser(data.user.id)
+            if (
+                err instanceof Prisma.PrismaClientKnownRequestError &&
+                err.code === 'P2002'
+            ) {
+                const field = (err.meta?.target as string[])?.[0];
 
+                throw new BadRequestException(
+                    `${field} already exists`,
+                );
+            }
             throw new InternalServerErrorException(
                 'Failed to create user profile',
             );
+
         }
     }
 
@@ -100,5 +113,58 @@ export class AuthService {
                 user: profile,
             },
         };
+    }
+
+    async googleLogin(redirectTo: string) {
+        const supabase = this.supabaseService.getClient();
+
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: redirectTo,
+            },
+        });
+
+        if (error) {
+            throw new BadRequestException(error.message);
+        }
+
+        return {
+            url: data.url,
+        };
+    }
+
+
+    async completeGoogle(
+        user: AuthUser,
+    ) {
+
+        let profile =
+            await this.prisma.users.findUnique({
+                where: {
+                    id: user.id,
+                },
+            });
+
+        if (!profile) {
+
+            profile =
+                await this.prisma.users.create({
+
+                    data: {
+                        id: user.id,
+                        email: user.email,
+                        phone_number: ""
+                    },
+
+                });
+
+        }
+
+        return {
+            message: 'Google login successful',
+            user: profile,
+        };
+
     }
 }
