@@ -6,6 +6,8 @@ import { LoginDto } from './dto/login.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CurrentUser } from './decorators/current-user.decorator';
 import type { AuthUser } from './interfaces/auth-user.interface';
+import { SendOtpDto } from './dto/sendotp.dto';
+import { VerifyOtpDto } from './dto/verifyotp.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -67,5 +69,15 @@ export class AuthController {
         @CurrentUser() user: AuthUser,
     ) {
         return this.authService.completeGoogle(user);
+    }
+
+    @Post('phone/send-otp')
+    sendOtp(@Body() dto: SendOtpDto) {
+        return this.authService.sendOtp(dto);
+    }
+
+    @Post('phone/verify')
+    verifyOtp(@Body() dto: VerifyOtpDto) {
+        return this.authService.verifyOtp(dto);
     }
 }

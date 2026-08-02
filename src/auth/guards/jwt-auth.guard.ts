@@ -10,6 +10,7 @@ import type { AuthUser } from '../interfaces/auth-user.interface';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
+  
   private JWKS = createRemoteJWKSet(
     new URL(
       `${process.env.SUPABASE_URL}/auth/v1/.well-known/jwks.json`,

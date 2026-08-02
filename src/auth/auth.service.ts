@@ -5,6 +5,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { LoginDto } from './dto/login.dto';
 import type { AuthUser } from './interfaces/auth-user.interface';
 import { Prisma } from '@prisma/client';
+import { SendOtpDto } from './dto/sendotp.dto';
+import { VerifyOtpDto } from './dto/verifyotp.dto';
 
 @Injectable()
 export class AuthService {
@@ -166,5 +168,67 @@ export class AuthService {
             user: profile,
         };
 
+    }
+
+    async sendOtp(dto: SendOtpDto) {
+        const supabase = this.supabaseService.getClient();
+
+        const { error } = await supabase.auth.signInWithOtp({
+            phone: dto.phoneNumber,
+        });
+
+        if (error) {
+            throw new BadRequestException(error.message);
+        }
+
+        return {
+            message: 'OTP sent successfully',
+        };
+    }
+
+    async verifyOtp(dto: VerifyOtpDto) {
+        const supabase = this.supabaseService.getClient();
+
+        const { data, error } = await supabase.auth.verifyOtp({
+            phone: dto.phoneNumber,
+            token: dto.token,
+            type: 'sms',
+        });
+
+        if (error) {
+            throw new UnauthorizedException(error.message);
+        }
+
+        // Check if profile exists
+        // Create one if it doesn't
+        // Return your standard login response
+        const user = data.user
+        if (!user) {
+            throw new UnauthorizedException('User not found');
+        }
+
+        let profile =
+            await this.prisma.users.findUnique({
+                where: {
+                    id: user.id,
+                },
+            });
+        if (!profile) {
+
+            profile =
+                await this.prisma.users.create({
+
+                    data: {
+                        id: user.id,
+                        email: user.email,
+                        phone_number: ""
+                    },
+
+                });
+
+        }
+
+
+        return data;
     }
 }

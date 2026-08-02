@@ -8,13 +8,15 @@ import { SupabaseModule } from './supabase/supabase.module';
 import { ConfigModule } from '@nestjs/config';
 import { InventoryController } from './inventory/controller/inventory.controller';
 import { InventoryModule } from './inventory/inventory.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    PrismaModule, UsersModule, AuthModule, SupabaseModule, InventoryModule],
+    PrismaModule, UsersModule, AuthModule, SupabaseModule, InventoryModule, DashboardModule, TransactionsModule],
   controllers: [AppController],
   providers: [AppService],
 })
