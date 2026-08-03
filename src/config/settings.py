@@ -14,5 +14,10 @@ class Settings(BaseSettings):
     llm_api_key: str | None = None
     llm_model: str | None = None
 
+    # Supabase (auth + database) — same project the Node backend uses
+    supabase_url: str | None = None
+    supabase_anon_key: str | None = None
+    supabase_service_role_key: str | None = None
+
 
 settings = Settings()

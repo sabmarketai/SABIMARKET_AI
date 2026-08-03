@@ -6,3 +6,6 @@ pydantic-settings
 anthropic
 openai
 word2number
+supabase
+postgrest
+email-validator

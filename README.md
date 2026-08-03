@@ -58,6 +58,32 @@ parser. Replace it with a call to the endpoint above, keeping the same `ParsedCl
 so no UI code needs to change. Show a "did I get this right?" confirmation screen with the parsed
 fields editable before saving — don't auto-save silently.
 
+### Market price prediction
+
+**Endpoint:** `GET /api/v1/market/predict?item=tomato&market=Mile 12` (`market` defaults to `"Mile 12"`)
+
+Returns whether an item's price is trending up/down/stable, e.g.:
+
+```json
+{
+  "item": "tomato",
+  "market": "Mile 12",
+  "unit": "basket",
+  "current_avg_price": 19280.0,
+  "trend": "up",
+  "percent_change": 17.6,
+  "confidence": "medium",
+  "advice": "Tomato price dey rise for Mile 12 — sell now if you get stock.",
+  "data_source": "sample"
+}
+```
+
+Currently backed by **placeholder sample data** (`data/sample_prices.json`, 14 days each for tomato,
+orange, pepper, beans at Mile 12) — not real prices yet, hence `confidence` is capped at `"medium"` and
+`data_source` says `"sample"`. Real data source (NBS/WFP public datasets, or actual trader-submitted
+prices once the app has users) is a follow-up, not yet wired in. 404s with a clear message if you ask
+for an item/market not in the sample set.
+
 ### Database (Firebase/Supabase)
 
 This service is **stateless** — it does not store anything. Each `transactions[]` entry returned above
