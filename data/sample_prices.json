@@ -2,7 +2,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-13",
+    "date": "2026-07-22",
     "price": 15130.0,
     "unit": "basket",
     "source": "sample"
@@ -10,7 +10,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-14",
+    "date": "2026-07-23",
     "price": 15020.0,
     "unit": "basket",
     "source": "sample"
@@ -18,7 +18,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-15",
+    "date": "2026-07-24",
     "price": 15710.0,
     "unit": "basket",
     "source": "sample"
@@ -26,7 +26,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-16",
+    "date": "2026-07-25",
     "price": 16110.0,
     "unit": "basket",
     "source": "sample"
@@ -34,7 +34,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-17",
+    "date": "2026-07-26",
     "price": 17090.0,
     "unit": "basket",
     "source": "sample"
@@ -42,7 +42,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-18",
+    "date": "2026-07-27",
     "price": 17490.0,
     "unit": "basket",
     "source": "sample"
@@ -50,7 +50,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-19",
+    "date": "2026-07-28",
     "price": 18190.0,
     "unit": "basket",
     "source": "sample"
@@ -58,7 +58,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-20",
+    "date": "2026-07-29",
     "price": 17780.0,
     "unit": "basket",
     "source": "sample"
@@ -66,7 +66,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-21",
+    "date": "2026-07-30",
     "price": 18600.0,
     "unit": "basket",
     "source": "sample"
@@ -74,7 +74,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-22",
+    "date": "2026-07-31",
     "price": 18610.0,
     "unit": "basket",
     "source": "sample"
@@ -82,7 +82,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-23",
+    "date": "2026-08-01",
     "price": 19280.0,
     "unit": "basket",
     "source": "sample"
@@ -90,7 +90,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-24",
+    "date": "2026-08-02",
     "price": 20080.0,
     "unit": "basket",
     "source": "sample"
@@ -98,7 +98,7 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-25",
+    "date": "2026-08-03",
     "price": 19960.0,
     "unit": "basket",
     "source": "sample"
@@ -106,31 +106,239 @@
   {
     "item": "tomato",
     "market": "Mile 12",
-    "date": "2026-07-26",
+    "date": "2026-08-04",
     "price": 20620.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-22",
+    "price": 17150.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-23",
+    "price": 17080.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-24",
+    "price": 16790.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-25",
+    "price": 17210.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-26",
+    "price": 17470.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-27",
+    "price": 16680.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-28",
+    "price": 17550.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-29",
+    "price": 17470.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-30",
+    "price": 17140.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-07-31",
+    "price": 16990.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-08-01",
+    "price": 17860.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-08-02",
+    "price": 17250.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-08-03",
+    "price": 17030.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Balogun",
+    "date": "2026-08-04",
+    "price": 17080.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-22",
+    "price": 14290.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-23",
+    "price": 14030.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-24",
+    "price": 14130.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-25",
+    "price": 14010.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-26",
+    "price": 13780.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-27",
+    "price": 14080.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-28",
+    "price": 13530.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-29",
+    "price": 13610.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-30",
+    "price": 13770.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-07-31",
+    "price": 13540.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-08-01",
+    "price": 13680.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-08-02",
+    "price": 13380.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-08-03",
+    "price": 13420.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "tomato",
+    "market": "Agege",
+    "date": "2026-08-04",
+    "price": 12840.0,
     "unit": "basket",
     "source": "sample"
   },
   {
     "item": "orange",
     "market": "Mile 12",
-    "date": "2026-07-13",
-    "price": 8580.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-14",
-    "price": 8520.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-15",
+    "date": "2026-07-22",
     "price": 8360.0,
     "unit": "bag",
     "source": "sample"
@@ -138,64 +346,8 @@
   {
     "item": "orange",
     "market": "Mile 12",
-    "date": "2026-07-16",
-    "price": 8550.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-17",
-    "price": 8660.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-18",
-    "price": 8250.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-19",
-    "price": 8660.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-20",
-    "price": 8600.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-21",
-    "price": 8420.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
-    "date": "2026-07-22",
-    "price": 8320.0,
-    "unit": "bag",
-    "source": "sample"
-  },
-  {
-    "item": "orange",
-    "market": "Mile 12",
     "date": "2026-07-23",
-    "price": 8730.0,
+    "price": 8390.0,
     "unit": "bag",
     "source": "sample"
   },
@@ -203,7 +355,7 @@
     "item": "orange",
     "market": "Mile 12",
     "date": "2026-07-24",
-    "price": 8420.0,
+    "price": 8290.0,
     "unit": "bag",
     "source": "sample"
   },
@@ -211,7 +363,7 @@
     "item": "orange",
     "market": "Mile 12",
     "date": "2026-07-25",
-    "price": 8290.0,
+    "price": 8360.0,
     "unit": "bag",
     "source": "sample"
   },
@@ -219,30 +371,334 @@
     "item": "orange",
     "market": "Mile 12",
     "date": "2026-07-26",
+    "price": 8300.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-07-27",
+    "price": 8390.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-07-28",
+    "price": 8570.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-07-29",
+    "price": 8430.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-07-30",
+    "price": 8430.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-07-31",
+    "price": 8350.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-08-01",
+    "price": 8380.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-08-02",
+    "price": 8720.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-08-03",
+    "price": 8580.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Mile 12",
+    "date": "2026-08-04",
+    "price": 8560.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-22",
+    "price": 8820.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-23",
+    "price": 9060.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-24",
+    "price": 8700.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-25",
+    "price": 8750.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-26",
+    "price": 9010.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-27",
+    "price": 8770.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-28",
+    "price": 8660.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-29",
+    "price": 8660.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-30",
+    "price": 8680.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-07-31",
+    "price": 8590.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-08-01",
+    "price": 8250.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-08-02",
+    "price": 8090.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-08-03",
+    "price": 8170.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Balogun",
+    "date": "2026-08-04",
+    "price": 8090.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-22",
+    "price": 7860.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-23",
+    "price": 8260.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-24",
+    "price": 8280.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-25",
+    "price": 8050.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-26",
+    "price": 8260.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-27",
+    "price": 8180.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-28",
+    "price": 8480.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-29",
+    "price": 8300.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-30",
+    "price": 8250.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-07-31",
     "price": 8290.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-08-01",
+    "price": 8490.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-08-02",
+    "price": 8390.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-08-03",
+    "price": 8600.0,
+    "unit": "bag",
+    "source": "sample"
+  },
+  {
+    "item": "orange",
+    "market": "Agege",
+    "date": "2026-08-04",
+    "price": 8810.0,
     "unit": "bag",
     "source": "sample"
   },
   {
     "item": "pepper",
     "market": "Mile 12",
-    "date": "2026-07-13",
-    "price": 10210.0,
+    "date": "2026-07-22",
+    "price": 9940.0,
     "unit": "basket",
     "source": "sample"
   },
   {
     "item": "pepper",
     "market": "Mile 12",
-    "date": "2026-07-14",
-    "price": 10260.0,
+    "date": "2026-07-23",
+    "price": 10020.0,
     "unit": "basket",
     "source": "sample"
   },
   {
     "item": "pepper",
     "market": "Mile 12",
-    "date": "2026-07-15",
+    "date": "2026-07-24",
+    "price": 10690.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-07-25",
     "price": 10580.0,
     "unit": "basket",
     "source": "sample"
@@ -250,182 +706,550 @@
   {
     "item": "pepper",
     "market": "Mile 12",
-    "date": "2026-07-16",
-    "price": 10720.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-17",
-    "price": 10790.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-18",
-    "price": 11270.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-19",
-    "price": 11070.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-20",
-    "price": 11380.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-21",
-    "price": 11770.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-22",
-    "price": 11810.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-23",
-    "price": 12180.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-24",
-    "price": 12170.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
-    "date": "2026-07-25",
-    "price": 12460.0,
-    "unit": "basket",
-    "source": "sample"
-  },
-  {
-    "item": "pepper",
-    "market": "Mile 12",
     "date": "2026-07-26",
-    "price": 12160.0,
+    "price": 10500.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-07-27",
+    "price": 10660.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-07-28",
+    "price": 10890.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-07-29",
+    "price": 11430.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-07-30",
+    "price": 11740.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-07-31",
+    "price": 11680.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-08-01",
+    "price": 11610.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-08-02",
+    "price": 12030.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-08-03",
+    "price": 12670.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Mile 12",
+    "date": "2026-08-04",
+    "price": 12520.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-22",
+    "price": 11310.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-23",
+    "price": 11430.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-24",
+    "price": 11050.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-25",
+    "price": 11730.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-26",
+    "price": 11900.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-27",
+    "price": 11990.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-28",
+    "price": 11980.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-29",
+    "price": 12450.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-30",
+    "price": 12250.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-07-31",
+    "price": 12680.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-08-01",
+    "price": 12890.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-08-02",
+    "price": 13470.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-08-03",
+    "price": 13610.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Balogun",
+    "date": "2026-08-04",
+    "price": 13310.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-22",
+    "price": 9500.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-23",
+    "price": 9340.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-24",
+    "price": 9780.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-25",
+    "price": 9780.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-26",
+    "price": 9480.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-27",
+    "price": 9700.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-28",
+    "price": 9700.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-29",
+    "price": 9460.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-30",
+    "price": 9840.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-07-31",
+    "price": 9730.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-08-01",
+    "price": 9890.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-08-02",
+    "price": 9770.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-08-03",
+    "price": 9480.0,
+    "unit": "basket",
+    "source": "sample"
+  },
+  {
+    "item": "pepper",
+    "market": "Agege",
+    "date": "2026-08-04",
+    "price": 9700.0,
     "unit": "basket",
     "source": "sample"
   },
   {
     "item": "beans",
     "market": "Mile 12",
-    "date": "2026-07-13",
+    "date": "2026-07-22",
+    "price": 4080.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-23",
+    "price": 4260.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-24",
+    "price": 4200.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-25",
+    "price": 4140.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-26",
+    "price": 3970.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-27",
+    "price": 3860.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-28",
+    "price": 4010.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-29",
+    "price": 3980.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-30",
+    "price": 3740.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-07-31",
+    "price": 3780.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-08-01",
+    "price": 3640.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-08-02",
+    "price": 3750.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-08-03",
+    "price": 3700.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Mile 12",
+    "date": "2026-08-04",
+    "price": 3520.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Balogun",
+    "date": "2026-07-22",
+    "price": 3990.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Balogun",
+    "date": "2026-07-23",
+    "price": 4050.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Balogun",
+    "date": "2026-07-24",
+    "price": 4020.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Balogun",
+    "date": "2026-07-25",
+    "price": 4210.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Balogun",
+    "date": "2026-07-26",
     "price": 4130.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-14",
-    "price": 4100.0,
+    "market": "Balogun",
+    "date": "2026-07-27",
+    "price": 4120.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-15",
-    "price": 4000.0,
+    "market": "Balogun",
+    "date": "2026-07-28",
+    "price": 4240.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-16",
-    "price": 4000.0,
+    "market": "Balogun",
+    "date": "2026-07-29",
+    "price": 4330.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-17",
-    "price": 3920.0,
+    "market": "Balogun",
+    "date": "2026-07-30",
+    "price": 4230.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-18",
-    "price": 3920.0,
+    "market": "Balogun",
+    "date": "2026-07-31",
+    "price": 4300.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-19",
-    "price": 3960.0,
+    "market": "Balogun",
+    "date": "2026-08-01",
+    "price": 4510.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-20",
-    "price": 3850.0,
+    "market": "Balogun",
+    "date": "2026-08-02",
+    "price": 4460.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-21",
+    "market": "Balogun",
+    "date": "2026-08-03",
+    "price": 4440.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Balogun",
+    "date": "2026-08-04",
+    "price": 4500.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-07-22",
+    "price": 3810.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-07-23",
     "price": 3800.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-22",
-    "price": 3720.0,
-    "unit": "paint",
-    "source": "sample"
-  },
-  {
-    "item": "beans",
-    "market": "Mile 12",
-    "date": "2026-07-23",
-    "price": 3690.0,
-    "unit": "paint",
-    "source": "sample"
-  },
-  {
-    "item": "beans",
-    "market": "Mile 12",
+    "market": "Agege",
     "date": "2026-07-24",
     "price": 3790.0,
     "unit": "paint",
@@ -433,17 +1257,89 @@
   },
   {
     "item": "beans",
-    "market": "Mile 12",
+    "market": "Agege",
     "date": "2026-07-25",
-    "price": 3680.0,
+    "price": 3800.0,
     "unit": "paint",
     "source": "sample"
   },
   {
     "item": "beans",
-    "market": "Mile 12",
+    "market": "Agege",
     "date": "2026-07-26",
-    "price": 3620.0,
+    "price": 3690.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-07-27",
+    "price": 3650.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-07-28",
+    "price": 3570.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-07-29",
+    "price": 3660.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-07-30",
+    "price": 3530.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-07-31",
+    "price": 3640.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-08-01",
+    "price": 3590.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-08-02",
+    "price": 3390.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-08-03",
+    "price": 3380.0,
+    "unit": "paint",
+    "source": "sample"
+  },
+  {
+    "item": "beans",
+    "market": "Agege",
+    "date": "2026-08-04",
+    "price": 3430.0,
     "unit": "paint",
     "source": "sample"
   }

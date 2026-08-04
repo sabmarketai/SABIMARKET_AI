@@ -79,10 +79,27 @@ Returns whether an item's price is trending up/down/stable, e.g.:
 ```
 
 Currently backed by **placeholder sample data** (`data/sample_prices.json`, 14 days each for tomato,
-orange, pepper, beans at Mile 12) — not real prices yet, hence `confidence` is capped at `"medium"` and
-`data_source` says `"sample"`. Real data source (NBS/WFP public datasets, or actual trader-submitted
-prices once the app has users) is a follow-up, not yet wired in. 404s with a clear message if you ask
-for an item/market not in the sample set.
+orange, pepper, beans — across **three markets: Mile 12, Balogun, Agege**) — not real prices yet, hence
+`confidence` is capped at `"medium"` and `data_source` says `"sample"`. Real data source (NBS/WFP public
+datasets, or actual trader-submitted prices once the app has users) is a follow-up, not yet wired in.
+404s with a clear message if you ask for an item/market not in the sample set.
+
+For perishables (tomato, orange, pepper — not beans), the response also includes a **real** `weather`
+block (live from Open-Meteo, free/no key needed) — if rain is likely soon at that market, the `advice`
+text flags it, since rain disrupting supply is a real driver of price spikes for produce.
+
+**Endpoint:** `GET /api/v1/market/recommend?item=tomato&action=buy` (`action` is `"buy"` or `"sell"`)
+
+Compares the item across all three markets and recommends the best one — cheapest for buying, highest
+(and rising) for selling — combining price trend with the same live weather signal, e.g.:
+
+```json
+{
+  "item": "tomato", "action": "buy", "recommended_market": "Agege",
+  "reason": "Agege has the best price for tomato right now (₦13,460), trending down. Rain is likely there soon (100% chance) — buy soon rather than wait.",
+  "options": [ /* all 3 markets, for transparency */ ]
+}
+```
 
 ### Database (Firebase/Supabase)
 

@@ -1,11 +1,12 @@
 import tempfile
 from datetime import date
+from typing import Literal
 
 from fastapi import APIRouter, HTTPException, UploadFile
 
-from src.schemas.market import PricePrediction
+from src.schemas.market import MarketRecommendation, PricePrediction
 from src.schemas.transaction import TranscriptRequest, VoiceTransactionResponse
-from src.services.market_service import predict_price
+from src.services.market_service import predict_price, recommend_market
 from src.services.transcription_service import transcribe_audio
 from src.services.extraction_service import extract_transactions
 
@@ -33,6 +34,14 @@ def extract_text(body: TranscriptRequest) -> VoiceTransactionResponse:
 def predict(item: str, market: str = "Mile 12") -> PricePrediction:
     try:
         return predict_price(item, market)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@market_router.get("/recommend", response_model=MarketRecommendation)
+def recommend(item: str, action: Literal["buy", "sell"]) -> MarketRecommendation:
+    try:
+        return recommend_market(item, action)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
