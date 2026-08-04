@@ -20,36 +20,3 @@ class VoiceTransactionResponse(BaseModel):
 
 class TranscriptRequest(BaseModel):
     transcript: str
-
-
-# --- Below: requests for the persisted transactions table (Supabase), as opposed
-# --- to TransactionEntry above, which is only the AI's in-memory extraction result.
-
-
-class CreateTransactionRequest(BaseModel):
-    transaction_type: str  # "buy" | "sell" | "debt_owed" | "debt_paid" | "expense" | "waste"
-    total_amount: float
-    profit: float | None = None
-    note: str | None = None
-
-
-class UpdateTransactionRequest(BaseModel):
-    transaction_type: str | None = None
-    total_amount: float | None = None
-    profit: float | None = None
-    note: str | None = None
-    synced: bool | None = None
-
-
-class CreateTransactionItemRequest(BaseModel):
-    item_name: str
-    quantity: float
-    unit: str
-    unit_price: float
-
-
-class UpdateTransactionItemRequest(BaseModel):
-    item_name: str | None = None
-    quantity: float | None = None
-    unit: str | None = None
-    unit_price: float | None = None
