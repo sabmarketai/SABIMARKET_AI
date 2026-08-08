@@ -1,4 +1,4 @@
-import VoiceRecorder from "@/components/VoiceRecorder";
+import VoiceRecorder from "@/components/organisms/VoiceRecorder";
 
 export default function RecordPage() {
   return (
