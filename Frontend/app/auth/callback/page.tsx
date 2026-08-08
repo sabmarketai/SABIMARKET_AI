@@ -1,40 +1,33 @@
 "use client";
 
 import DashboardPage from "@/app/(autheticated)/dashboard/page";
+import { base_url } from "@/app/constants/api";
 import { supabase } from "@/lib/supabase";
 import { useEffect } from "react";
 
 export default function Callback() {
+  useEffect(() => {
+    async function completeLogin() {
+      const { data } = await supabase.auth.getSession();
 
-    useEffect(() => {
+      if (!data.session) return;
 
-        async function completeLogin() {
+      await fetch(`${base_url}/auth/google/complete`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${data.session.access_token}`,
+        },
+      });
 
-            const {
-                data,
-            } = await supabase.auth.getSession();
+      window.location.href = "/";
+    }
 
-            if (!data.session) return;
+    completeLogin();
+  }, []);
 
-            await fetch(
-                "http://localhost:3001/auth/google/complete",
-                {
-                    method: "POST",
-                    headers: {
-                        Authorization:
-                            `Bearer ${data.session.access_token}`,
-                    },
-                },
-            );
-
-            window.location.href = "/";
-
-        }
-
-        completeLogin();
-
-    }, []);
-
-    return <><DashboardPage /></>;
-
+  return (
+    <>
+      <DashboardPage />
+    </>
+  );
 }

@@ -16,6 +16,7 @@ import MarketInsightCard from "@/components/molecules/MarketInsightCard";
 import TransactionReceipt from "@/components/molecules/TransactionReceipt";
 import { unsyncedCount, useSabiMarketStore } from "@/lib/store";
 import { useDashboard } from "@/features/dashboard/hooks/useDashboard";
+import Loader from "@/components/shared/Loader";
 
 function formatNaira(amount: number): string {
   const sign = amount < 0 ? "-" : "";
@@ -29,7 +30,11 @@ export default function DashboardPage() {
   const { data, isLoading, isError, error } = useDashboard();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   if (isError) {

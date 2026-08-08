@@ -6,7 +6,7 @@ export async function GET(req: Request) {
 
   if (!authorization) {
     return Response.json(
-      { message: "Unauthorized" },
+      { message: "Unauthorized please log in" },
       { status: 401 }
     );
   }
