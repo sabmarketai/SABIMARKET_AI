@@ -1,5 +1,5 @@
 import Button from "@/components/atoms/Button";
-import CommunityPostCard from "@/components/CommunityPostCard";
+import CommunityPostCard from "@/components/molecules/CommunityPostCard";
 import { seedCommunityPosts } from "@/lib/mockData";
 import { Plus } from "lucide-react";
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import TransactionReceipt from "@/components/TransactionReceipt";
+import TransactionReceipt from "@/components/molecules/TransactionReceipt";
 import { useSabiMarketStore } from "@/lib/store";
 
 type Filter = "all" | "buy" | "sell";
@@ -11,11 +11,15 @@ export default function TransactionsPage() {
   const transactions = useSabiMarketStore((s) => s.transactions);
   const [filter, setFilter] = useState<Filter>("all");
 
-  const filtered = transactions.filter((t) => filter === "all" || t.kind === filter);
+  const filtered = transactions.filter(
+    (t) => filter === "all" || t.kind === filter,
+  );
 
   return (
     <div className="px-5 pt-5">
-      <h1 className="font-display text-xl font-semibold text-indigo">All transactions</h1>
+      <h1 className="font-display text-xl font-semibold text-indigo">
+        All transactions
+      </h1>
 
       <div className="mt-4 flex gap-2">
         {(["all", "buy", "sell"] as Filter[]).map((f) => (
@@ -24,7 +28,9 @@ export default function TransactionsPage() {
             onClick={() => setFilter(f)}
             className={clsx(
               "rounded-full px-4 py-1.5 text-xs text-secondary-foreground font-semibold capitalize",
-              filter === f ? "bg-secondary text-cream" : "bg-grey text-indigo/60 shadow-card"
+              filter === f
+                ? "bg-secondary text-cream"
+                : "bg-grey text-indigo/60 shadow-card",
             )}
           >
             {f}
