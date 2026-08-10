@@ -10,13 +10,14 @@ import { InventoryController } from './inventory/controller/inventory.controller
 import { InventoryModule } from './inventory/inventory.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { AiModule } from './ai/ai.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    PrismaModule, UsersModule, AuthModule, SupabaseModule, InventoryModule, DashboardModule, TransactionsModule],
+    PrismaModule, UsersModule, AuthModule, SupabaseModule, InventoryModule, DashboardModule, TransactionsModule, AiModule],
   controllers: [AppController],
   providers: [AppService],
 })

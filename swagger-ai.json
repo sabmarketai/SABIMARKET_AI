@@ -1,0 +1,564 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "SabiMarket AI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/api/v1/voice/voice-transaction": {
+            "post": {
+                "tags": [
+                    "voice-transaction"
+                ],
+                "summary": "Voice Transaction",
+                "operationId": "voice_transaction_api_v1_voice_voice_transaction_post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_voice_transaction_api_v1_voice_voice_transaction_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VoiceTransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/voice/extract-text": {
+            "post": {
+                "tags": [
+                    "voice-transaction"
+                ],
+                "summary": "Extract Text",
+                "description": "For clients that already have a transcript (e.g. the browser's own\nspeech recognition) — skips Whisper and goes straight to extraction.",
+                "operationId": "extract_text_api_v1_voice_extract_text_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TranscriptRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VoiceTransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/market/predict": {
+            "get": {
+                "tags": [
+                    "market"
+                ],
+                "summary": "Predict",
+                "operationId": "predict_api_v1_market_predict_get",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Item"
+                        }
+                    },
+                    {
+                        "name": "market",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "Mile 12",
+                            "title": "Market"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PricePrediction"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/market/recommend": {
+            "get": {
+                "tags": [
+                    "market"
+                ],
+                "summary": "Recommend",
+                "operationId": "recommend_api_v1_market_recommend_get",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Item"
+                        }
+                    },
+                    {
+                        "name": "action",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "enum": [
+                                "buy",
+                                "sell"
+                            ],
+                            "type": "string",
+                            "title": "Action"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MarketRecommendation"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Health",
+                "operationId": "health_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": true,
+                                    "type": "object",
+                                    "title": "Response Health Health Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body_voice_transaction_api_v1_voice_voice_transaction_post": {
+                "properties": {
+                    "audio": {
+                        "type": "string",
+                        "contentMediaType": "application/octet-stream",
+                        "title": "Audio"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "audio"
+                ],
+                "title": "Body_voice_transaction_api_v1_voice_voice_transaction_post"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "MarketOption": {
+                "properties": {
+                    "market": {
+                        "type": "string",
+                        "title": "Market"
+                    },
+                    "current_avg_price": {
+                        "type": "number",
+                        "title": "Current Avg Price"
+                    },
+                    "trend": {
+                        "type": "string",
+                        "enum": [
+                            "up",
+                            "down",
+                            "stable"
+                        ],
+                        "title": "Trend"
+                    },
+                    "percent_change": {
+                        "type": "number",
+                        "title": "Percent Change"
+                    },
+                    "weather": {
+                        "$ref": "#/components/schemas/WeatherInfo"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "market",
+                    "current_avg_price",
+                    "trend",
+                    "percent_change",
+                    "weather"
+                ],
+                "title": "MarketOption"
+            },
+            "MarketRecommendation": {
+                "properties": {
+                    "item": {
+                        "type": "string",
+                        "title": "Item"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "buy",
+                            "sell"
+                        ],
+                        "title": "Action"
+                    },
+                    "recommended_market": {
+                        "type": "string",
+                        "title": "Recommended Market"
+                    },
+                    "reason": {
+                        "type": "string",
+                        "title": "Reason"
+                    },
+                    "options": {
+                        "items": {
+                            "$ref": "#/components/schemas/MarketOption"
+                        },
+                        "type": "array",
+                        "title": "Options"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "item",
+                    "action",
+                    "recommended_market",
+                    "reason",
+                    "options"
+                ],
+                "title": "MarketRecommendation"
+            },
+            "PricePrediction": {
+                "properties": {
+                    "item": {
+                        "type": "string",
+                        "title": "Item"
+                    },
+                    "market": {
+                        "type": "string",
+                        "title": "Market"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "title": "Unit"
+                    },
+                    "current_avg_price": {
+                        "type": "number",
+                        "title": "Current Avg Price"
+                    },
+                    "trend": {
+                        "type": "string",
+                        "enum": [
+                            "up",
+                            "down",
+                            "stable"
+                        ],
+                        "title": "Trend"
+                    },
+                    "percent_change": {
+                        "type": "number",
+                        "title": "Percent Change"
+                    },
+                    "confidence": {
+                        "type": "string",
+                        "enum": [
+                            "low",
+                            "medium",
+                            "high"
+                        ],
+                        "title": "Confidence"
+                    },
+                    "advice": {
+                        "type": "string",
+                        "title": "Advice"
+                    },
+                    "data_source": {
+                        "type": "string",
+                        "title": "Data Source"
+                    },
+                    "weather": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/WeatherInfo"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "item",
+                    "market",
+                    "unit",
+                    "current_avg_price",
+                    "trend",
+                    "percent_change",
+                    "confidence",
+                    "advice",
+                    "data_source"
+                ],
+                "title": "PricePrediction"
+            },
+            "TransactionEntry": {
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "buy",
+                            "sell",
+                            "debt_owed",
+                            "debt_paid",
+                            "expense",
+                            "waste"
+                        ],
+                        "title": "Action"
+                    },
+                    "item": {
+                        "type": "string",
+                        "title": "Item"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "title": "Quantity"
+                    },
+                    "unit": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Unit"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "title": "Amount"
+                    },
+                    "currency": {
+                        "type": "string",
+                        "title": "Currency",
+                        "default": "NGN"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "action",
+                    "item",
+                    "quantity",
+                    "amount"
+                ],
+                "title": "TransactionEntry"
+            },
+            "TranscriptRequest": {
+                "properties": {
+                    "transcript": {
+                        "type": "string",
+                        "title": "Transcript"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "transcript"
+                ],
+                "title": "TranscriptRequest"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    },
+                    "input": {
+                        "title": "Input"
+                    },
+                    "ctx": {
+                        "type": "object",
+                        "title": "Context"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            },
+            "VoiceTransactionResponse": {
+                "properties": {
+                    "transcript": {
+                        "type": "string",
+                        "title": "Transcript"
+                    },
+                    "date": {
+                        "type": "string",
+                        "title": "Date"
+                    },
+                    "transactions": {
+                        "items": {
+                            "$ref": "#/components/schemas/TransactionEntry"
+                        },
+                        "type": "array",
+                        "title": "Transactions"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "transcript",
+                    "date",
+                    "transactions"
+                ],
+                "title": "VoiceTransactionResponse"
+            },
+            "WeatherInfo": {
+                "properties": {
+                    "market": {
+                        "type": "string",
+                        "title": "Market"
+                    },
+                    "temperature_c": {
+                        "type": "number",
+                        "title": "Temperature C"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "title": "Condition"
+                    },
+                    "rain_expected": {
+                        "type": "boolean",
+                        "title": "Rain Expected"
+                    },
+                    "rain_probability_percent": {
+                        "type": "number",
+                        "title": "Rain Probability Percent"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "market",
+                    "temperature_c",
+                    "condition",
+                    "rain_expected",
+                    "rain_probability_percent"
+                ],
+                "title": "WeatherInfo"
+            }
+        }
+    }
+}
