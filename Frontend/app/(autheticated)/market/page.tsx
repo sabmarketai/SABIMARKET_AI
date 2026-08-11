@@ -1,4 +1,4 @@
-import PriceCard from "@/components/PriceCard";
+import PriceCard from "@/components/molecules/PriceCard";
 import { seedMarketPrices } from "@/lib/mockData";
 
 // FILLER DATA — replace seedMarketPrices with a real fetch once the price
