@@ -15,7 +15,7 @@ function Auth() {
       `${window.location.origin}/auth/callback`;
 
     const res = await fetch(
-      `http://localhost:3001/auth/google?redirectTo=${encodeURIComponent(redirectTo)}`
+      `http://localhost:3001/api/auth/google?redirectTo=${encodeURIComponent(redirectTo)}`
 
     );
 

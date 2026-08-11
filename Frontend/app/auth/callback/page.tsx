@@ -17,7 +17,7 @@ export default function Callback() {
             if (!data.session) return;
 
             await fetch(
-                "http://localhost:3001/auth/google/complete",
+                "http://localhost:3001/api/auth/google/complete",
                 {
                     method: "POST",
                     headers: {
