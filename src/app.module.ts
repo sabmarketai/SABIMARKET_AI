@@ -11,13 +11,27 @@ import { InventoryModule } from './inventory/inventory.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { AiModule } from './ai/ai.module';
+import { MarketModule } from './market/market.module';
+import { CommunityModule } from './community/community.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    PrismaModule, UsersModule, AuthModule, SupabaseModule, InventoryModule, DashboardModule, TransactionsModule, AiModule],
+    PrismaModule,
+    UsersModule,
+    AuthModule,
+    SupabaseModule,
+    InventoryModule,
+    DashboardModule,
+    TransactionsModule,
+    AiModule,
+    NotificationsModule,
+    MarketModule,
+    CommunityModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
