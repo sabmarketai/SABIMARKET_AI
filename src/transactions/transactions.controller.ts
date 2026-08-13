@@ -44,7 +44,10 @@ export class TransactionsController {
   }
 
   @Get()
-  findAllTransactions(@CurrentUser() user: AuthUser) {
+  findAllTransactions(
+    @CurrentUser() user: AuthUser,
+    // @Body() dto: CreateTransaction,
+  ) {
     return this.transactionsService.findAll(user.id);
   }
 

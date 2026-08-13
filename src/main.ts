@@ -5,6 +5,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { BigIntInterceptor } from './common/interceptors/bigint.interceptor';
+import { writeFileSync } from 'fs';
+import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -31,6 +33,9 @@ app.useGlobalInterceptors(
 //   new HttpExceptionFilter(),
 // );
 
+
+
+
   const config = new DocumentBuilder()
     .setTitle('SabiMarket API')
     .setDescription(
@@ -49,6 +54,22 @@ app.useGlobalInterceptors(
 
 
   const document = SwaggerModule.createDocument(app, config);
+
+  
+// writeFileSync(
+//   './swagger.json',
+//   JSON.stringify(document, null, 2),
+// );
+
+const swaggerPath = join(process.cwd(), 'swagger.json');
+
+writeFileSync(
+  swaggerPath,
+  JSON.stringify(document, null, 2),
+);
+
+console.log(`📄 Swagger JSON generated at: ${swaggerPath}`);
+
 
   SwaggerModule.setup('/', app, document);
 

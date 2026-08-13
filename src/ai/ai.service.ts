@@ -32,11 +32,12 @@ const VOICE_TIMEOUT_MS = 30000;
 export class AiService {
   private readonly logger = new Logger(AiService.name);
   private readonly aiUrl?: string;
+  private readonly configuredUrl?: string;
   private readonly apiKey?: string;
 
   constructor(private readonly configService: ConfigService) {
-    const configuredUrl = this.configService.get<string>('AI_SERVICE_URL');
-    this.aiUrl = configuredUrl?.replace(/\/+$/, '');
+    this.configuredUrl = this.configService.get<string>('AI_SERVICE_URL');
+    this.aiUrl = this.configuredUrl?.replace(/\/+$/, '');
     this.apiKey = this.configService.get<string>('AI_SERVICE_API_KEY');
   }
 
@@ -50,7 +51,7 @@ export class AiService {
     formData.append('audio', blob, audio.originalname);
 
     const response = await this.request(
-      '/api/v1/voice/voice-transaction',
+      `${this.configuredUrl}/api/v1/voice/voice-transaction`,
       { method: 'POST', body: formData },
       VOICE_TIMEOUT_MS,
       'voice-transaction',
