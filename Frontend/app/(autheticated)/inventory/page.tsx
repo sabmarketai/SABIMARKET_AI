@@ -1,7 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { Pencil, Trash2, Plus, Loader2, AlertCircle } from "lucide-react";
+import {
+  Pencil,
+  Trash2,
+  Plus,
+  Loader2,
+  AlertCircle,
+  PlusCircle,
+  MinusCircle,
+} from "lucide-react";
 import Button from "@/components/atoms/Button";
 import { AppDialog } from "@/components/molecules/Dialog";
 import { Input } from "@/components/ui/input";
@@ -14,6 +22,7 @@ import type {
 } from "@/features/inventory/types";
 import { useUpdateInventory } from "@/features/inventory/hooks/useUpdateInventoryItems";
 import { useCreateInventory } from "@/features/inventory/hooks/useCreateInventoryItems";
+import { useAdjustStock } from "@/features/inventory/hooks/useAdjustStock";
 
 // ---------- Types ----------
 
@@ -58,11 +67,11 @@ const toPayload = (form: ItemFormState): CreateInventoryItemPayload => ({
 
 export default function InventoryPage() {
   const { data: items, isLoading, isError, error } = useGetInventory();
-  console.log("items shape:", items);
 
   const createMutation = useCreateInventory();
   const updateMutation = useUpdateInventory();
   const deleteMutation = useDeleteInventory();
+  const adjustMutation = useAdjustStock();
 
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [editingItem, setEditingItem] = React.useState<InventoryItem | null>(
@@ -72,6 +81,11 @@ export default function InventoryPage() {
   const [deleteTarget, setDeleteTarget] = React.useState<InventoryItem | null>(
     null,
   );
+  const [adjustTarget, setAdjustTarget] = React.useState<InventoryItem | null>(
+    null,
+  );
+  const [adjustDelta, setAdjustDelta] = React.useState("");
+  const [adjustError, setAdjustError] = React.useState<string | null>(null);
   const [formError, setFormError] = React.useState<string | null>(null);
   const [page, setPage] = React.useState(1);
   const pageSize = 5;
@@ -138,6 +152,29 @@ export default function InventoryPage() {
     }
   };
 
+  const openAdjustDialog = (item: InventoryItem) => {
+    setAdjustTarget(item);
+    setAdjustDelta("");
+    setAdjustError(null);
+  };
+
+  const confirmAdjust = async () => {
+    if (!adjustTarget) return;
+    const delta = Number(adjustDelta);
+    if (!delta) {
+      setAdjustError("Enter a non-zero amount");
+      return;
+    }
+    try {
+      await adjustMutation.mutateAsync({ id: adjustTarget.id, quantity: delta });
+      setAdjustTarget(null);
+    } catch (err) {
+      setAdjustError(
+        err instanceof Error ? err.message : "Something went wrong. Try again.",
+      );
+    }
+  };
+
   const columns: Column<InventoryItem>[] = [
     { header: "Name", accessor: "item_name" },
     {
@@ -201,6 +238,13 @@ export default function InventoryPage() {
           emptyMessage="No products in inventory yet"
           actions={(row) => (
             <div className="flex items-center justify-end gap-1">
+              <button
+                onClick={() => openAdjustDialog(row)}
+                aria-label={`Adjust stock for ${row.item_name}`}
+                className="rounded-md p-2 text-foreground hover:bg-muted"
+              >
+                <PlusCircle size={16} />
+              </button>
               <button
                 onClick={() => openEditDialog(row)}
                 aria-label={`Edit ${row.item_name}`}
@@ -354,6 +398,66 @@ export default function InventoryPage() {
         }
       >
         <></>
+      </AppDialog>
+
+      {/* Adjust stock dialog */}
+      <AppDialog
+        open={adjustTarget !== null}
+        onClose={() => setAdjustTarget(null)}
+        title="Adjust Stock"
+        description={
+          adjustTarget
+            ? `Current quantity: ${Number(adjustTarget.quantity)} ${adjustTarget.unit}. Use a positive number to add stock, negative to remove.`
+            : undefined
+        }
+        footer={
+          <div className="flex w-full justify-end gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setAdjustTarget(null)}
+              disabled={adjustMutation.isPending}
+            >
+              Cancel
+            </Button>
+            <Button onClick={confirmAdjust} disabled={adjustMutation.isPending}>
+              {adjustMutation.isPending ? "Saving…" : "Apply"}
+            </Button>
+          </div>
+        }
+      >
+        <div className="space-y-3">
+          {adjustError && (
+            <div className="flex items-center gap-2 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+              <AlertCircle size={14} />
+              {adjustError}
+            </div>
+          )}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setAdjustDelta((v) => String(Number(v || "0") - 1))}
+              aria-label="Decrease"
+              className="text-destructive"
+            >
+              <MinusCircle size={20} />
+            </button>
+            <Input
+              type="number"
+              value={adjustDelta}
+              onChange={(e) => setAdjustDelta(e.target.value)}
+              placeholder="e.g. 5 or -3"
+              className="text-center"
+            />
+            <button
+              type="button"
+              onClick={() => setAdjustDelta((v) => String(Number(v || "0") + 1))}
+              aria-label="Increase"
+              className="text-cassava"
+            >
+              <PlusCircle size={20} />
+            </button>
+          </div>
+        </div>
       </AppDialog>
     </div>
   );

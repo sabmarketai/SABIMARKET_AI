@@ -1,7 +1,17 @@
 // api/request.ts
 
 import { base_url } from "@/app/constants/api";
-import { LoginPayload, LoginResponse, LoginSuccessResponse, SignupPayload, SignupResponse, SignupSuccessResponse } from "../types";
+import {
+  LoginPayload,
+  LoginResponse,
+  LoginSuccessResponse,
+  SendOtpPayload,
+  SignupPayload,
+  SignupResponse,
+  SignupSuccessResponse,
+  VerifyOtpPayload,
+  VerifyOtpSuccessResponse,
+} from "../types";
 
 export async function request<T>(
   url: string,
@@ -35,3 +45,15 @@ export const signup = (payload: SignupPayload) => request<SignupSuccessResponse>
     method: "POST",
     body: JSON.stringify(payload),
 })
+
+export const sendOtp = (payload: SendOtpPayload) =>
+  request<{ message: string }>("/api/auth/phone/send-otp", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+
+export const verifyOtp = (payload: VerifyOtpPayload) =>
+  request<VerifyOtpSuccessResponse>("/api/auth/phone/verify", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });

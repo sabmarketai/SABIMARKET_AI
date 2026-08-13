@@ -8,9 +8,11 @@ import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "@/features/auth/schema";
+import { useSearchParam } from "@/hooks/useSearchParams";
 
 function Signup() {
   const { mutate, isPending } = useSignup();
+  const { setParam } = useSearchParam();
   const {
     register,
     handleSubmit,
@@ -22,7 +24,8 @@ function Signup() {
   const onSubmit = (values: SignupPayload) => {
     mutate(values, {
       onSuccess: () => {
-        toast.success("Account created");
+        toast.success("Account created. Please log in.");
+        setParam("isNewUser", "false");
       },
       onError: (error) => {
         toast.error(error.message);

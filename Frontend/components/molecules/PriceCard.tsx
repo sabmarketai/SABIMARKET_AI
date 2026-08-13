@@ -1,4 +1,4 @@
-import { MarketPrice } from "@/lib/types";
+import { ItemInsight } from "@/features/market/types";
 import { TrendingDown, TrendingUp, Minus } from "lucide-react";
 import clsx from "clsx";
 
@@ -9,20 +9,35 @@ function formatNaira(amount: number): string {
 const TREND_META = {
   up: { icon: TrendingUp, tone: "text-secondary-foreground bg-secondary", label: "rising" },
   down: { icon: TrendingDown, tone: "text-secondary-foreground bg-red", label: "falling" },
-  flat: { icon: Minus, tone: "text-secondary-foreground bg-amber", label: "steady" },
+  stable: { icon: Minus, tone: "text-secondary-foreground bg-amber", label: "steady" },
 } as const;
 
-export default function PriceCard({ price }: { price: MarketPrice }) {
-  const meta = TREND_META[price.trend];
+export default function PriceCard({ insight }: { insight: ItemInsight }) {
+  if (insight.priceCount === 0 || insight.latestPrice === undefined) {
+    return (
+      <div className="rounded-lg bg-grey text-primary-foreground p-4 shadow-card">
+        <p className="font-display text-base font-semibold text-indigo">
+          {insight.item}
+        </p>
+        <p className="mt-1 text-xs text-indigo/50">
+          {insight.message ?? "No price data available for this item"}
+        </p>
+      </div>
+    );
+  }
+
+  const trend = insight.trend ?? "stable";
+  const meta = TREND_META[trend];
   const Icon = meta.icon;
+
   return (
     <div className="rounded-lg bg-grey text-primary-foreground p-4 shadow-card">
       <div className="flex items-start justify-between">
         <div>
           <p className="font-display text-base font-semibold text-indigo">
-            {price.item}
+            {insight.item}
           </p>
-          <p className="text-xs text-indigo/50">{price.market}</p>
+          <p className="text-xs text-indigo/50">{insight.latestMarket}</p>
         </div>
         <span
           className={clsx(
@@ -31,16 +46,18 @@ export default function PriceCard({ price }: { price: MarketPrice }) {
           )}
         >
           <Icon size={12} />
-          {price.changePercent > 0 ? `${price.changePercent}%` : meta.label}
+          {insight.percentChange != null
+            ? `${insight.percentChange > 0 ? "+" : ""}${insight.percentChange}%`
+            : meta.label}
         </span>
       </div>
       <p className="mt-3 font-mono text-xl font-bold text-indigo">
-        {formatNaira(price.pricePerUnit)}
-        <span className="ml-1 text-xs font-normal text-indigo/40">/ {price.unit}</span>
+        {formatNaira(insight.latestPrice)}
       </p>
-      {price.note && (
+      {insight.lowestMarket && insight.highestMarket && (
         <p className="mt-2 rounded-lg bg-gold/10 px-2.5 py-1.5 text-xs text-indigo/70">
-          💬 {price.note}
+          Cheapest at {insight.lowestMarket.market} ({formatNaira(insight.lowestMarket.price)}) ·
+          {" "}Highest at {insight.highestMarket.market} ({formatNaira(insight.highestMarket.price)})
         </p>
       )}
     </div>

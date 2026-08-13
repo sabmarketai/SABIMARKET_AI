@@ -1,3 +1,5 @@
+import { Transaction } from "@/features/transactions/types";
+
 export interface DashboardUser {
   id: string;
   phone_number: string;
@@ -45,6 +47,6 @@ export interface DashboardResponse {
   today: DashboardToday;
   inventory: DashboardInventory;
   alerts: DashboardAlerts;
-  recent: unknown[];
+  recent: Transaction[];
   market: DashboardMarket;
 }

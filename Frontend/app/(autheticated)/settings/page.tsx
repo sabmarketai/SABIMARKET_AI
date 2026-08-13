@@ -1,28 +1,26 @@
 "use client";
 
-import { useSabiMarketStore, unsyncedCount } from "@/lib/store";
-import { seedTransactions } from "@/lib/mockData";
-import { Languages, RotateCcw, Info } from "lucide-react";
-import Button from "@/components/atoms/Button";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Languages, LogOut, Info } from "lucide-react";
+import { useSabiMarketStore } from "@/lib/store";
+import { clearSession } from "@/lib/session";
 
 export default function SettingsPage() {
   const language = useSabiMarketStore((s) => s.language);
   const setLanguage = useSabiMarketStore((s) => s.setLanguage);
-  const transactions = useSabiMarketStore((s) => s.transactions);
-  const addTransactions = useSabiMarketStore((s) => s.addTransactions);
-  const pending = unsyncedCount(transactions);
+  const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
 
-  function resetDemoData() {
-    // FILLER — clears local state back to the seed data. Once the backend
-    // exists this becomes "sign out" / "clear local cache" instead.
-    useSabiMarketStore.setState({ transactions: seedTransactions });
+  async function handleLogout() {
+    setLoggingOut(true);
+    await clearSession();
+    router.replace("/");
   }
 
   return (
     <div className="px-5 pt-5">
-      <h1 className="font-display text-xl font-semibold">
-        Settings
-      </h1>
+      <h1 className="font-display text-xl font-semibold">Settings</h1>
 
       <section className="mt-5 rounded-card bg-white p-4 shadow-card">
         <div className="mb-3 flex items-center gap-2 text-indigo">
@@ -45,44 +43,23 @@ export default function SettingsPage() {
           ))}
         </div>
         <p className="mt-2 text-xs font-semibold">
-          Controls the wording used across the app and voice prompts.
+          Controls the wording used across the app.
         </p>
       </section>
 
-      <section className="mt-4 rounded-lg bg-grey text-primary-foreground p-4 shadow-card">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-sm font-semibold text-indigo">Sync status</h2>
-            <p className="mt-0.5 text-xs text-indigo/40">
-              {pending > 0
-                ? `${pending} transaction${pending > 1 ? "s" : ""} waiting to sync`
-                : "Everything is backed up"}
-            </p>
-          </div>
-          <span
-            className={
-              pending > 0
-                ? "h-2.5 w-2.5 rounded-full bg-gold"
-                : "h-2.5 w-2.5 rounded-full bg-cassava"
-            }
-          />
-        </div>
-      </section>
-
       <button
-        onClick={resetDemoData}
-        className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg  text-red p-4 text-sm font-semibold text-pepper shadow-card"
+        onClick={handleLogout}
+        disabled={loggingOut}
+        className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-white p-4 text-sm font-semibold text-pepper shadow-card disabled:opacity-60"
       >
-        <RotateCcw size={16} /> Reset demo data
+        <LogOut size={16} /> {loggingOut ? "Logging out…" : "Log out"}
       </button>
 
       <section className="mt-4 flex items-start gap-2 rounded-card bg-indigo/5 p-4 text-xs text-indigo/60">
         <Info size={14} className="mt-0.5 shrink-0" />
         <p>
-          This build runs entirely on your device with sample data — no account
-          or backend yet. Data lives in this browser only. See the project
-          README for how the real sync, auth, and price-aggregation services
-          plug in.
+          Your data syncs with your SabiMarket account. Log in on another
+          device to see the same transactions, inventory and market data.
         </p>
       </section>
     </div>

@@ -5,6 +5,7 @@ import Input from "@/components/atoms/Input";
 import { useLogin } from "@/features/auth/hooks/useLogin";
 import { loginSchema } from "@/features/auth/schema";
 import { LoginPayload, LoginResponse } from "@/features/auth/types";
+import { supabase } from "@/lib/supabase";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Lock, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -25,8 +26,13 @@ function Login() {
 
   const onSubmit = (values: LoginPayload) => {
     mutate(values, {
-      onSuccess: (response) => {
-        sessionStorage.setItem("accessToken", response.data.accessToken);
+      onSuccess: async (response) => {
+        // Hydrate the Supabase client so it owns session persistence and
+        // refresh — authRequest reads the token through it, not a static copy.
+        await supabase.auth.setSession({
+          access_token: response.data.accessToken,
+          refresh_token: response.data.refreshToken,
+        });
         router.push("/dashboard");
       },
     });

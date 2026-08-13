@@ -31,3 +31,10 @@ export const updateInventoryItem = (
     body: JSON.stringify(payload),
   });
 };
+
+export const adjustInventoryStock = (id: string, quantity: number) => {
+  return authRequest<InventoryItem>(`/api/inventory/${id}/adjust`, {
+    method: "POST",
+    body: JSON.stringify({ quantity }),
+  });
+};
