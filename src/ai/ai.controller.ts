@@ -136,6 +136,7 @@ export class AiController {
   @ApiQuery({
     name: 'item',
     required: true,
+    example: 'Tomatoes',
   })
   @ApiQuery({
     name: 'market',
@@ -161,11 +162,13 @@ export class AiController {
   @ApiQuery({
     name: 'item',
     required: true,
+    example: 'Tomatoes',
   })
   @ApiQuery({
     name: 'action',
     required: true,
     enum: ['buy', 'sell'],
+    example: 'buy',
   })
   @ApiOkResponse({ type: MarketRecommendationDto })
   async recommend(

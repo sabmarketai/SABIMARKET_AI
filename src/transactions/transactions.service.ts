@@ -21,7 +21,7 @@ function normalizeItemName(name: string): string {
 
 @Injectable()
 export class TransactionsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(userId: string, dto: CreateTransactionDto) {
     const type = dto.transactionType.trim().toLowerCase();
@@ -99,7 +99,17 @@ export class TransactionsService {
     return this.prisma.transactions.update({
       where: { id },
       data: {
+        // // item_name: dto.itemName,
+        // quantity: dto.quantity!,
+        // unit: dto.unit!,
+        // unit_price: dto.unitPrice!,
+        // total_price: dto.quantity! * dto.unitPrice!,
+        transaction_type: dto.transactionType,
+        total_amount: dto.totalAmount,
+        profit: dto.profit,
+        currency: dto.currency,
         note: dto.note,
+        synced: false,
       },
     });
   }
