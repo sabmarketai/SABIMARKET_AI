@@ -26,7 +26,7 @@ const VALID_ACTIONS: AiTransactionAction[] = [
 ];
 
 const DEFAULT_TIMEOUT_MS = 15000;
-const VOICE_TIMEOUT_MS = 30000;
+const VOICE_TIMEOUT_MS = 300000;
 
 @Injectable()
 export class AiService {
@@ -36,9 +36,11 @@ export class AiService {
   private readonly apiKey?: string;
 
   constructor(private readonly configService: ConfigService) {
-    this.configuredUrl = this.configService.get<string>('AI_SERVICE_URL');
-    this.aiUrl = this.configuredUrl?.replace(/\/+$/, '');
+    // this.configuredUrl = this.configService.get<string>('AI_SERVICE_URL');
+    // this.aiUrl = this.configuredUrl?.replace(/\/+$/, '');
+    this.aiUrl = this.configService.get<string>('AI_SERVICE_URL')
     this.apiKey = this.configService.get<string>('AI_SERVICE_API_KEY');
+    console.log('AI_SERVICE_URL:', this.aiUrl);
   }
 
   async voiceTransaction(
@@ -51,7 +53,8 @@ export class AiService {
     formData.append('audio', blob, audio.originalname);
 
     const response = await this.request(
-      `${this.configuredUrl}/api/v1/voice/voice-transaction`,
+      // `${this.configuredUrl}/api/v1/voice/voice-transaction`,
+      `/api/v1/voice/voice-transaction`,
       { method: 'POST', body: formData },
       VOICE_TIMEOUT_MS,
       'voice-transaction',
