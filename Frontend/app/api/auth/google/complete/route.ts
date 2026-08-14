@@ -1,4 +1,4 @@
-import { base_url } from "@/app/constants/api";
+import { public_url } from "@/app/constants/api";
 
 export async function POST(req: Request) {
   const authorization = req.headers.get("authorization");
@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     return Response.json({ message: "Unauthorized" }, { status: 401 });
   }
 
-  const response = await fetch(`${base_url}/auth/google/complete`, {
+  const response = await fetch(`${public_url}/auth/google/complete`, {
     method: "POST",
     headers: {
       Authorization: authorization,
