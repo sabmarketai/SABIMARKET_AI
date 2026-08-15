@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   title: "SabiMarket AI",
   description:
     "Voice-first market assistant for Nigerian traders — track sales, know today's best prices, no wahala.",
-  // manifest: "/manifest.json",
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
