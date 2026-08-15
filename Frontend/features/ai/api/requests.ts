@@ -3,7 +3,7 @@ import { getAccessToken, refreshAccessToken } from "@/lib/session";
 import { AiTransactionResult, MarketRecommendation, PricePrediction } from "../types";
 // import { base_url } from "@/app/constants/api";
 
-const base_url = "http://localhost:3001/api";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 export const extractTextTransaction = (transcript: string) =>
   authRequest<AiTransactionResult>("/api/ai/extract-text", {
     method: "POST",

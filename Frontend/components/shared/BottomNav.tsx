@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LineChart, Package, Users2, Settings, Mic } from "lucide-react";
+import { Home, LineChart, Package, Users2, Settings, Mic, Receipt } from "lucide-react";
 import clsx from "clsx";
 
 const TABS = [
@@ -10,7 +10,7 @@ const TABS = [
   { href: "/market", label: "Market", icon: LineChart },
   { href: "/inventory", label: "Inventory", icon: Package },
   { href: "/community", label: "Community", icon: Users2 },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/transactions", label: "Transactions", icon: Receipt},
 ] as const;
 
 export default function BottomNav() {
