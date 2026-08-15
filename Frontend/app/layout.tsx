@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     title: "SabiMarket AI",
   },
   icons: {
-    icon: "/icons/icon-192.png",
-    apple: "/icons/icon-192.png",
+    icon: "/icons/apple_icon_1024.png",
+    apple: "/icons/apple_icon_1024.png",
   },
 };
 

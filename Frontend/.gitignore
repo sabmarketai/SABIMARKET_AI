@@ -2,11 +2,13 @@ node_modules
 .next
 out
 build
+.env*
 .env*.local
 *.pem
 npm-debug.log*
 .DS_Store
 next-env.d.ts
+public/sw*
 public/sw.js
 public/workbox-*.js
 public/worker-*.js
