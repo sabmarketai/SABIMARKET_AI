@@ -4,13 +4,15 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "SabiMarket Ai",
+    name: "SabiMarket AI",
     short_name: "SabiM",
-    description: "Your application description",
+    description:
+      "Voice-first market assistant for Nigerian traders — track sales, know today's best prices, no wahala.",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#ffffff",
+    orientation: "portrait",
+    background_color: "#FAF3E6",
+    theme_color: "#1E3A5F",
     icons: [
       {
         src: "/icons/apple_icon_1024.png",
