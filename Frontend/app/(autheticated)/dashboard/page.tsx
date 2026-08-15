@@ -3,19 +3,21 @@
 import Link from "next/link";
 import {
   Wallet,
-  CloudOff,
+  Star,
   Mic,
   ArrowRight,
   Receipt,
   ShoppingBag,
+  AlertCircle,
+  Bell,
 } from "lucide-react";
 import StatCard from "@/components/molecules/StatCard";
 import InventoryCard from "@/components/molecules/InventoryCard";
 import AlertBanner from "@/components/molecules/AlertBanner";
 import MarketInsightCard from "@/components/molecules/MarketInsightCard";
 import TransactionReceipt from "@/components/molecules/TransactionReceipt";
-import { unsyncedCount, useSabiMarketStore } from "@/lib/store";
 import { useDashboard } from "@/features/dashboard/hooks/useDashboard";
+import { useGetUnreadNotifications } from "@/features/notifications/hooks/useGetUnreadNotifications";
 import Loader from "@/components/shared/Loader";
 
 function formatNaira(amount: number): string {
@@ -24,10 +26,9 @@ function formatNaira(amount: number): string {
 }
 
 export default function DashboardPage() {
-  const localTransactions = useSabiMarketStore((s) => s.transactions);
-  const pending = unsyncedCount(localTransactions);
-
   const { data, isLoading, isError, error } = useDashboard();
+  const { data: unread } = useGetUnreadNotifications();
+  const unreadCount = unread?.length ?? 0;
 
   if (isLoading) {
     return (
@@ -38,7 +39,14 @@ export default function DashboardPage() {
   }
 
   if (isError) {
-    return <div>{error.message}</div>;
+    return (
+      <div className="flex items-center gap-2 rounded-card bg-red/10 p-4 m-4 text-sm text-red">
+        <AlertCircle size={16} />
+        {error instanceof Error
+          ? error.message
+          : "Failed to load your dashboard. Please try again."}
+      </div>
+    );
   }
 
   if (!data) {
@@ -46,16 +54,29 @@ export default function DashboardPage() {
   }
 
   const { user, today, inventory, alerts, recent, market } = data;
-  const recentTxns =
-    recent.length > 0 ? recent.slice(0, 3) : localTransactions.slice(0, 3);
+  const recentTxns = recent.slice(0, 3);
 
   return (
     <div className="mx-auto max-w-6xl p-3 sm:p-4 md:p-6 lg:p-8">
-      <div className="mb-4">
-        <h1 className="font-display text-lg font-semibold sm:text-xl">
-          {user.full_name.split(" ")[0]}&apos;s shop
-        </h1>
-        <p className="text-xs text-indigo/50">{user.market_location}</p>
+      <div className="mb-4 flex items-start justify-between">
+        <div>
+          <h1 className="font-display text-lg font-semibold sm:text-xl">
+            {user.full_name.split(" ")[0]}&apos;s shop
+          </h1>
+          <p className="text-xs text-indigo/50">{user.market_location}</p>
+        </div>
+        <Link
+          href="/notifications"
+          aria-label="Notifications"
+          className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-grey text-indigo shadow-card"
+        >
+          <Bell size={18} />
+          {unreadCount > 0 && (
+            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red px-1 text-[10px] font-bold text-primary-foreground">
+              {unreadCount > 9 ? "9+" : unreadCount}
+            </span>
+          )}
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start">
@@ -69,11 +90,11 @@ export default function DashboardPage() {
               icon={<Wallet size={14} />}
             />
             <StatCard
-              label="Pending sync"
-              value={String(pending)}
+              label="Reputation"
+              value={String(user.reputation_score)}
               tone="gold"
-              icon={<CloudOff size={14} />}
-              sub={pending > 0 ? "will sync when online" : "all caught up"}
+              icon={<Star size={14} />}
+              sub={`${user.total_transactions} transactions`}
             />
             <StatCard
               label="Sales today"
@@ -132,7 +153,7 @@ export default function DashboardPage() {
                   No transactions yet. Tap the mic below to log your first one.
                 </p>
               ) : (
-                recentTxns.map((t: any) => (
+                recentTxns.map((t) => (
                   <TransactionReceipt key={t.id} txn={t} />
                 ))
               )}

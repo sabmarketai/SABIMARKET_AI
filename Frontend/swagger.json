@@ -1,0 +1,1541 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/auth/health": {
+            "get": {
+                "operationId": "AuthController_health",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "operationId": "AuthController_register",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully"
+                    }
+                },
+                "summary": "Register a new trader",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "operationId": "AuthController_login",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful"
+                    }
+                },
+                "summary": "Login a trader",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/google": {
+            "get": {
+                "operationId": "AuthController_google",
+                "parameters": [
+                    {
+                        "name": "redirectTo",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "summary": "Login with Google",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/google/complete": {
+            "post": {
+                "operationId": "AuthController_completeGoogle",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/phone/send-otp": {
+            "post": {
+                "operationId": "AuthController_sendOtp",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SendOtpDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/auth/phone/verify": {
+            "post": {
+                "operationId": "AuthController_verifyOtp",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VerifyOtpDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/api/inventory": {
+            "post": {
+                "operationId": "InventoryController_create",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateInventoryItemDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Inventory"
+                ]
+            },
+            "get": {
+                "operationId": "InventoryController_findAll",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Inventory"
+                ]
+            }
+        },
+        "/api/inventory/{id}": {
+            "get": {
+                "operationId": "InventoryController_findOne",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Inventory"
+                ]
+            },
+            "patch": {
+                "operationId": "InventoryController_update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateInventoryItemDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Inventory"
+                ]
+            },
+            "delete": {
+                "operationId": "InventoryController_remove",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Inventory"
+                ]
+            }
+        },
+        "/api/inventory/{id}/adjust": {
+            "post": {
+                "operationId": "InventoryController_adjustStock",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdjustStockDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Inventory"
+                ]
+            }
+        },
+        "/api/dashboard": {
+            "get": {
+                "operationId": "DashboardController_dashboard",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Dashboard"
+                ]
+            }
+        },
+        "/api/transactions": {
+            "post": {
+                "operationId": "TransactionsController_createTransaction",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateTransactionDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Transactions"
+                ]
+            },
+            "get": {
+                "operationId": "TransactionsController_findAllTransactions",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Transactions"
+                ]
+            }
+        },
+        "/api/transactions/{id}": {
+            "get": {
+                "operationId": "TransactionsController_findTransaction",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Transactions"
+                ]
+            },
+            "patch": {
+                "operationId": "TransactionsController_updateTransaction",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateTransactionDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Transactions"
+                ]
+            },
+            "delete": {
+                "operationId": "TransactionsController_deleteTransaction",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Transactions"
+                ]
+            }
+        },
+        "/api/transactions/{id}/sync": {
+            "post": {
+                "operationId": "TransactionsController_syncTransaction",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Transactions"
+                ]
+            }
+        },
+        "/api/transactions/{id}/items": {
+            "get": {
+                "operationId": "TransactionsController_getTransactionItems",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Transactions"
+                ]
+            }
+        },
+        "/api/ai/voice-transaction": {
+            "post": {
+                "operationId": "AiController_voiceTransaction",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "audio": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "required": [
+                                    "audio"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The transcript, parsed date, and the transactions created for the authenticated user.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "transcript": "I bought 5 baskets of tomatoes for 2000 naira",
+                                        "date": "2026-08-10",
+                                        "transactions": [
+                                            {
+                                                "id": "1",
+                                                "user_id": "00000000-0000-0000-0000-000000000000",
+                                                "transaction_type": "buy",
+                                                "transaction_date": "2026-08-10T00:00:00.000Z",
+                                                "total_amount": 2000,
+                                                "currency": "NGN",
+                                                "note": "Voice: \"I bought 5 baskets of tomatoes for 2000 naira\"",
+                                                "transaction_items": [
+                                                    {
+                                                        "id": "1",
+                                                        "transaction_id": "1",
+                                                        "item_name": "tomatoes",
+                                                        "quantity": 5,
+                                                        "unit": "basket",
+                                                        "unit_price": 400,
+                                                        "total_price": 2000
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "summary": "Send the customer's recording here. The audio is transcribed and parsed by the AI service, then persisted as transactions for the authenticated user.",
+                "tags": [
+                    "AI"
+                ]
+            }
+        },
+        "/api/ai/extract-text": {
+            "post": {
+                "operationId": "AiController_extractText",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TranscriptRequestDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The transcript, parsed date, and the transactions created for the authenticated user."
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "summary": "For clients that already have a transcript (e.g. the browser's own speech recognition) — skips Whisper and goes straight to extraction, then persists the resulting transactions.",
+                "tags": [
+                    "AI"
+                ]
+            }
+        },
+        "/api/ai/predict": {
+            "get": {
+                "operationId": "AiController_predict",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "market",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "example": "Mile 12",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PricePredictionDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "summary": "Get a price prediction for an item at a given market.",
+                "tags": [
+                    "AI"
+                ]
+            }
+        },
+        "/api/ai/recommend": {
+            "get": {
+                "operationId": "AiController_recommend",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "action",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "enum": [
+                                "buy",
+                                "sell"
+                            ],
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MarketRecommendationDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "summary": "Get a market recommendation for buying or selling an item.",
+                "tags": [
+                    "AI"
+                ]
+            }
+        },
+        "/api/notifications": {
+            "get": {
+                "operationId": "NotificationsController_findAll",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Notifications"
+                ]
+            }
+        },
+        "/api/notifications/unread": {
+            "get": {
+                "operationId": "NotificationsController_findUnread",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Notifications"
+                ]
+            }
+        },
+        "/api/notifications/read-all": {
+            "patch": {
+                "operationId": "NotificationsController_markAllAsRead",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Notifications"
+                ]
+            }
+        },
+        "/api/notifications/{id}/read": {
+            "patch": {
+                "operationId": "NotificationsController_markAsRead",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Notifications"
+                ]
+            }
+        },
+        "/api/market/prices": {
+            "post": {
+                "operationId": "MarketController_create",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateMarketPriceDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Market"
+                ]
+            },
+            "get": {
+                "operationId": "MarketController_findAll",
+                "parameters": [
+                    {
+                        "name": "market",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "example": "Mile 12",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "item",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "example": "Orange",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "example": 20,
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Market"
+                ]
+            }
+        },
+        "/api/market/prices/recent": {
+            "get": {
+                "operationId": "MarketController_findRecent",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Market"
+                ]
+            }
+        },
+        "/api/market/prices/{id}": {
+            "get": {
+                "operationId": "MarketController_findOne",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Market"
+                ]
+            }
+        },
+        "/api/market/insights": {
+            "get": {
+                "operationId": "MarketController_getInsights",
+                "parameters": [
+                    {
+                        "name": "item",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Market"
+                ]
+            }
+        },
+        "/api/community/posts": {
+            "post": {
+                "operationId": "CommunityController_create",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCommunityPostDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Community"
+                ]
+            },
+            "get": {
+                "operationId": "CommunityController_findAll",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Community"
+                ]
+            }
+        },
+        "/api/community/posts/{id}": {
+            "get": {
+                "operationId": "CommunityController_findOne",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Community"
+                ]
+            },
+            "patch": {
+                "operationId": "CommunityController_update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateCommunityPostDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Community"
+                ]
+            },
+            "delete": {
+                "operationId": "CommunityController_remove",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "access-token": []
+                    }
+                ],
+                "tags": [
+                    "Community"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "SabiMarket API",
+        "description": "Backend API for the SabiMarket AI voice-first market assistant.",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [],
+    "components": {
+        "securitySchemes": {
+            "access-token": {
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "type": "http"
+            }
+        },
+        "schemas": {
+            "RegisterDto": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "trader@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password123"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "example": "Aisha Bello"
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "example": "08031234567"
+                    },
+                    "marketLocation": {
+                        "type": "string",
+                        "example": "Balogun Market"
+                    }
+                },
+                "required": [
+                    "email",
+                    "password",
+                    "fullName"
+                ]
+            },
+            "LoginDto": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "trader@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password123"
+                    }
+                },
+                "required": [
+                    "email",
+                    "password"
+                ]
+            },
+            "SendOtpDto": {
+                "type": "object",
+                "properties": {}
+            },
+            "VerifyOtpDto": {
+                "type": "object",
+                "properties": {}
+            },
+            "CreateInventoryItemDto": {
+                "type": "object",
+                "properties": {
+                    "itemName": {
+                        "type": "string",
+                        "example": "Rice"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "example": 20
+                    },
+                    "unit": {
+                        "type": "string",
+                        "example": "bag"
+                    },
+                    "averageCost": {
+                        "type": "number",
+                        "example": 85000
+                    }
+                },
+                "required": [
+                    "itemName",
+                    "quantity",
+                    "unit",
+                    "averageCost"
+                ]
+            },
+            "UpdateInventoryItemDto": {
+                "type": "object",
+                "properties": {
+                    "itemName": {
+                        "type": "string",
+                        "example": "Rice"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "example": 20
+                    },
+                    "unit": {
+                        "type": "string",
+                        "example": "bag"
+                    },
+                    "averageCost": {
+                        "type": "number",
+                        "example": 85000
+                    }
+                }
+            },
+            "AdjustStockDto": {
+                "type": "object",
+                "properties": {
+                    "quantity": {
+                        "type": "number",
+                        "example": -3
+                    }
+                },
+                "required": [
+                    "quantity"
+                ]
+            },
+            "CreateTransactionItemDto": {
+                "type": "object",
+                "properties": {
+                    "itemName": {
+                        "type": "string",
+                        "example": "Orange"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "example": 5
+                    },
+                    "unit": {
+                        "type": "string",
+                        "example": "piece"
+                    },
+                    "unitPrice": {
+                        "type": "number",
+                        "example": 500
+                    }
+                },
+                "required": [
+                    "itemName",
+                    "quantity",
+                    "unit",
+                    "unitPrice"
+                ]
+            },
+            "CreateTransactionDto": {
+                "type": "object",
+                "properties": {
+                    "transactionType": {
+                        "type": "string",
+                        "example": "buy",
+                        "description": "e.g. buy, sell, debt_owed, debt_paid, expense, waste"
+                    },
+                    "totalAmount": {
+                        "type": "number",
+                        "example": 42500
+                    },
+                    "profit": {
+                        "type": "number",
+                        "example": 0
+                    },
+                    "currency": {
+                        "type": "string",
+                        "example": "NGN"
+                    },
+                    "note": {
+                        "type": "string",
+                        "example": "Bought stock from Mile 12"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CreateTransactionItemDto"
+                        }
+                    }
+                },
+                "required": [
+                    "transactionType",
+                    "totalAmount",
+                    "items"
+                ]
+            },
+            "UpdateTransactionDto": {
+                "type": "object",
+                "properties": {
+                    "note": {
+                        "type": "string",
+                        "description": "Only the note can be edited after creation. Editing type/amount/items is not supported because it would desynchronize inventory."
+                    }
+                }
+            },
+            "TranscriptRequestDto": {
+                "type": "object",
+                "properties": {
+                    "transcript": {
+                        "type": "string",
+                        "example": "I bought 5 baskets of tomatoes for 2000 naira",
+                        "description": "Transcript text, for clients that already have one (e.g. the browser's own speech recognition)."
+                    }
+                },
+                "required": [
+                    "transcript"
+                ]
+            },
+            "WeatherInfoDto": {
+                "type": "object",
+                "properties": {
+                    "market": {
+                        "type": "string"
+                    },
+                    "temperature_c": {
+                        "type": "number"
+                    },
+                    "condition": {
+                        "type": "string"
+                    },
+                    "rain_expected": {
+                        "type": "boolean"
+                    },
+                    "rain_probability_percent": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "market",
+                    "temperature_c",
+                    "condition",
+                    "rain_expected",
+                    "rain_probability_percent"
+                ]
+            },
+            "PricePredictionDto": {
+                "type": "object",
+                "properties": {
+                    "item": {
+                        "type": "string"
+                    },
+                    "market": {
+                        "type": "string"
+                    },
+                    "unit": {
+                        "type": "string"
+                    },
+                    "current_avg_price": {
+                        "type": "number"
+                    },
+                    "trend": {
+                        "type": "string",
+                        "enum": [
+                            "up",
+                            "down",
+                            "stable"
+                        ]
+                    },
+                    "percent_change": {
+                        "type": "number"
+                    },
+                    "confidence": {
+                        "type": "string",
+                        "enum": [
+                            "low",
+                            "medium",
+                            "high"
+                        ]
+                    },
+                    "advice": {
+                        "type": "string"
+                    },
+                    "data_source": {
+                        "type": "string"
+                    },
+                    "weather": {
+                        "nullable": true,
+                        "type": "object",
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/WeatherInfoDto"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "item",
+                    "market",
+                    "unit",
+                    "current_avg_price",
+                    "trend",
+                    "percent_change",
+                    "confidence",
+                    "advice",
+                    "data_source",
+                    "weather"
+                ]
+            },
+            "MarketOptionDto": {
+                "type": "object",
+                "properties": {
+                    "market": {
+                        "type": "string"
+                    },
+                    "current_avg_price": {
+                        "type": "number"
+                    },
+                    "trend": {
+                        "type": "string",
+                        "enum": [
+                            "up",
+                            "down",
+                            "stable"
+                        ]
+                    },
+                    "percent_change": {
+                        "type": "number"
+                    },
+                    "weather": {
+                        "$ref": "#/components/schemas/WeatherInfoDto"
+                    }
+                },
+                "required": [
+                    "market",
+                    "current_avg_price",
+                    "trend",
+                    "percent_change",
+                    "weather"
+                ]
+            },
+            "MarketRecommendationDto": {
+                "type": "object",
+                "properties": {
+                    "item": {
+                        "type": "string"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "buy",
+                            "sell"
+                        ]
+                    },
+                    "recommended_market": {
+                        "type": "string"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MarketOptionDto"
+                        }
+                    }
+                },
+                "required": [
+                    "item",
+                    "action",
+                    "recommended_market",
+                    "reason",
+                    "options"
+                ]
+            },
+            "CreateMarketPriceDto": {
+                "type": "object",
+                "properties": {
+                    "marketName": {
+                        "type": "string",
+                        "example": "Mile 12"
+                    },
+                    "itemName": {
+                        "type": "string",
+                        "example": "Orange"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": 500
+                    }
+                },
+                "required": [
+                    "marketName",
+                    "itemName",
+                    "price"
+                ]
+            },
+            "CreateCommunityPostDto": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Best price for tomatoes today?"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "Anyone know where to get cheap tomatoes in Mile 12 this week?"
+                    }
+                },
+                "required": [
+                    "title",
+                    "content"
+                ]
+            },
+            "UpdateCommunityPostDto": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Best price for tomatoes today?"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "Anyone know where to get cheap tomatoes in Mile 12 this week?"
+                    }
+                }
+            }
+        }
+    }
+}

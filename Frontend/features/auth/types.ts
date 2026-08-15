@@ -82,3 +82,21 @@ export interface LoginSuccessResponse {
   message: string;
   data: LoginData;
 }
+
+export interface SendOtpPayload {
+  phoneNumber: string;
+}
+
+export interface VerifyOtpPayload {
+  phoneNumber: string;
+  token: string;
+}
+
+export interface VerifyOtpSuccessResponse {
+  user: User | null;
+  session: {
+    access_token: string;
+    refresh_token: string;
+    expires_in: number;
+  } | null;
+}
