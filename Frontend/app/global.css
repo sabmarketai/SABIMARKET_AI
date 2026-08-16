@@ -85,7 +85,7 @@
     --grey: #828e82;
     --red: #ef4444;
     --input: #f6f6f6;
-    --background: oklch(1 0 0);
+   --background: color-mix(in srgb, var(--primary) 3%, white);
     --foreground: #1c1d21;
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
@@ -154,6 +154,10 @@
   * {
     @apply border-border outline-ring/50;
   }
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
 @layer utilities {

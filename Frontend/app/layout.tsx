@@ -4,6 +4,7 @@ import "./global.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import Providers from "@/providers/providers";
+import { ServiceWorkerRegistration } from "@/providers/ServiceWorker";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -67,12 +68,14 @@ export default function RootLayout({
       )}
     >
       <body className="font-sans">
-        <Providers>
-          <Toaster position="top-center" richColors />
-          <div className="mx-auto flex min-h-dvh flex-col bg-white p-4 text-foreground shadow-card">
-            <main className="flex-1 overflow-y-auto pb-24">{children}</main>
-          </div>
-        </Providers>
+        <ServiceWorkerRegistration>
+          <Providers>
+            <Toaster position="top-center" richColors />
+            <div className="mx-auto flex min-h-dvh flex-col bg-background p-4 text-foreground shadow-card">
+              <main className="flex-1 overflow-y-auto pb-24">{children}</main>
+            </div>
+          </Providers>
+        </ServiceWorkerRegistration>
       </body>
     </html>
   );

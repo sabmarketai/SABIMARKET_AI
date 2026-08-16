@@ -1,5 +1,6 @@
 import BottomNav from "@/components/shared/BottomNav";
 import ProtectedLayout from "@/providers/protectedLayout";
+import OnboardingGuard from "@/components/shared/OnboardingGuard";
 
 export default function RootLayout({
   children,
@@ -8,10 +9,12 @@ export default function RootLayout({
 }) {
   return (
     <ProtectedLayout>
-      <div>
-        <div>{children}</div>
-        <BottomNav />
-      </div>
+      <OnboardingGuard>
+        <div>
+          <div>{children}</div>
+          <BottomNav />
+        </div>
+      </OnboardingGuard>
     </ProtectedLayout>
   );
 }
