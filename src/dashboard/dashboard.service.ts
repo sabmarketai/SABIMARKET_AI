@@ -117,7 +117,11 @@ export class DashboardService {
             });
 
         const sales = transactions.filter(
-            t => t.transaction_type === 'sale',
+            t => t.transaction_type === 'sell',
+        );
+
+        const purchases = transactions.filter(
+            t => t.transaction_type === 'buy',
         );
 
         const expenses = transactions.filter(
@@ -126,6 +130,9 @@ export class DashboardService {
 
         return {
             salesCount: sales.length,
+            
+            purchasesCount: purchases.length,
+
 
             expenseCount: expenses.length,
 
