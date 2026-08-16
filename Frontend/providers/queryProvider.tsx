@@ -14,6 +14,7 @@ export default function QueryProvider({ children }: Props) {
         defaultOptions: {
           queries: {
             retry: 1,
+            refetchOnReconnect: true,
             refetchOnWindowFocus: false,
             staleTime: 1000 * 60 * 5, // 5 minutes
           },

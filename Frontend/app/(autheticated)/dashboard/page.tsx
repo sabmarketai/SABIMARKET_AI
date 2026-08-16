@@ -10,6 +10,7 @@ import {
   ShoppingBag,
   AlertCircle,
   Bell,
+  LogOut,
 } from "lucide-react";
 import StatCard from "@/components/molecules/StatCard";
 import InventoryCard from "@/components/molecules/InventoryCard";
@@ -19,6 +20,8 @@ import TransactionReceipt from "@/components/molecules/TransactionReceipt";
 import { useDashboard } from "@/features/dashboard/hooks/useDashboard";
 import { useGetUnreadNotifications } from "@/features/notifications/hooks/useGetUnreadNotifications";
 import Loader from "@/components/shared/Loader";
+import { useRouter } from "next/navigation";
+import { clearSession } from "@/lib/session";
 
 function formatNaira(amount: number): string {
   const sign = amount < 0 ? "-" : "";
@@ -28,7 +31,13 @@ function formatNaira(amount: number): string {
 export default function DashboardPage() {
   const { data, isLoading, isError, error } = useDashboard();
   const { data: unread } = useGetUnreadNotifications();
+  const router = useRouter();
   const unreadCount = unread?.length ?? 0;
+
+  const logout = async () => {
+    await clearSession();
+    router.replace("/");
+  };
 
   if (isLoading) {
     return (
@@ -65,18 +74,26 @@ export default function DashboardPage() {
           </h1>
           <p className="text-xs text-indigo/50">{user.market_location}</p>
         </div>
-        <Link
-          href="/notifications"
-          aria-label="Notifications"
-          className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-grey text-indigo shadow-card"
-        >
-          <Bell size={18} />
-          {unreadCount > 0 && (
-            <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red px-1 text-[10px] font-bold text-primary-foreground">
-              {unreadCount > 9 ? "9+" : unreadCount}
-            </span>
-          )}
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/notifications"
+            aria-label="Notifications"
+            className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-grey text-indigo shadow-card"
+          >
+            <Bell size={18} />
+            {unreadCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red px-1 text-[10px] font-bold text-primary-foreground">
+                {unreadCount > 9 ? "9+" : unreadCount}
+              </span>
+            )}
+          </Link>
+          <div
+            className="border p-2 bg-destructive rounded-full"
+            onClick={logout}
+          >
+            <LogOut />
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start">
@@ -153,9 +170,7 @@ export default function DashboardPage() {
                   No transactions yet. Tap the mic below to log your first one.
                 </p>
               ) : (
-                recentTxns.map((t) => (
-                  <TransactionReceipt key={t.id} txn={t} />
-                ))
+                recentTxns.map((t) => <TransactionReceipt key={t.id} txn={t} />)
               )}
             </div>
           </div>
