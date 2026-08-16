@@ -8,7 +8,7 @@ export interface DashboardUser {
   market_location: string;
   created_at: string;
   reputation_score: number;
-  total_transactions: number;
+  purchases_today: number;
   preferred_language: string;
 }
 
@@ -18,6 +18,7 @@ export interface DashboardToday {
   totalSales: number;
   totalExpenses: number;
   totalProfit: number;
+  purchasesCount: number
 }
 
 export interface DashboardInventory {

@@ -166,7 +166,10 @@ export default function InventoryPage() {
       return;
     }
     try {
-      await adjustMutation.mutateAsync({ id: adjustTarget.id, quantity: delta });
+      await adjustMutation.mutateAsync({
+        id: adjustTarget.id,
+        quantity: delta,
+      });
       setAdjustTarget(null);
     } catch (err) {
       setAdjustError(
@@ -183,7 +186,7 @@ export default function InventoryPage() {
       render: (value, row) => `${Number(value)} ${row.unit}`,
     },
     {
-      header: "Avg. Cost",
+      header: "Unit Cost",
       accessor: "average_cost",
       render: (value) => currency(Number(value)),
     },
@@ -435,7 +438,9 @@ export default function InventoryPage() {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => setAdjustDelta((v) => String(Number(v || "0") - 1))}
+              onClick={() =>
+                setAdjustDelta((v) => String(Number(v || "0") - 1))
+              }
               aria-label="Decrease"
               className="text-destructive"
             >
@@ -450,7 +455,9 @@ export default function InventoryPage() {
             />
             <button
               type="button"
-              onClick={() => setAdjustDelta((v) => String(Number(v || "0") + 1))}
+              onClick={() =>
+                setAdjustDelta((v) => String(Number(v || "0") + 1))
+              }
               aria-label="Increase"
               className="text-cassava"
             >

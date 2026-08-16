@@ -12,10 +12,10 @@ export const useDeleteTransaction = () => {
   return useMutation({
     mutationFn: deleteTransaction,
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: transactionKeys.list() });
-      queryClient.invalidateQueries({ queryKey: inventoryKeys.list() });
-      queryClient.invalidateQueries({ queryKey: dashboardKeys.overview() });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: transactionKeys.list() });
+      await queryClient.invalidateQueries({ queryKey: inventoryKeys.list() });
+      await queryClient.invalidateQueries({ queryKey: dashboardKeys.overview() });
     },
   });
 };

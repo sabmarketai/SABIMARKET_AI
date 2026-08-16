@@ -101,20 +101,20 @@ export default function DashboardPage() {
         <div className="space-y-4 lg:col-span-2">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <StatCard
-              label="Today's profit"
+              label="Total profit"
               value={formatNaira(today.totalProfit)}
               tone={today.totalProfit >= 0 ? "cassava" : "pepper"}
               icon={<Wallet size={14} />}
             />
             <StatCard
-              label="Reputation"
-              value={String(user.reputation_score)}
+              label="Total Purchases"
+              value={String(today.purchasesCount)}
               tone="gold"
               icon={<Star size={14} />}
-              sub={`${user.total_transactions} transactions`}
+              // sub={`${user.purchases_today} transactions`}
             />
             <StatCard
-              label="Sales today"
+              label="Total Sales"
               value={String(today.salesCount)}
               tone="indigo"
               icon={<ShoppingBag size={14} />}
@@ -122,7 +122,7 @@ export default function DashboardPage() {
               compact
             />
             <StatCard
-              label="Expenses today"
+              label="Total Expenses"
               value={String(today.expenseCount)}
               tone="indigo"
               icon={<Receipt size={14} />}

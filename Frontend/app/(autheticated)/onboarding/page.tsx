@@ -72,7 +72,8 @@ export default function OnboardingPage() {
       },
       {
         onSuccess: () => {
-          router.replace("/");
+          
+          router.push("/dashboard");
         },
       },
     );
