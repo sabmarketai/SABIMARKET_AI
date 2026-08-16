@@ -1,6 +1,36 @@
 {
   "openapi": "3.0.0",
   "paths": {
+    "/api/users/me": {
+      "patch": {
+        "operationId": "UsersController_updateMe",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ],
+        "summary": "Update current user profile",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/api/auth/health": {
       "get": {
         "operationId": "AuthController_health",
@@ -1129,6 +1159,26 @@
       }
     },
     "schemas": {
+      "UpdateUserProfileDto": {
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string",
+            "example": "08012345678",
+            "description": "User phone number"
+          },
+          "marketLocation": {
+            "type": "string",
+            "example": "Mile 12 Market, Lagos",
+            "description": "User market location"
+          },
+          "fullName": {
+            "type": "string",
+            "example": "Bolu",
+            "description": "User full name"
+          }
+        }
+      },
       "RegisterDto": {
         "type": "object",
         "properties": {
