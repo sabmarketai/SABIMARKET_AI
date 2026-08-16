@@ -32,8 +32,8 @@ export async function signOut() {
   return supabase.auth.signOut();
 }
 
-export function getAuthHeader() {
-  const { data } = supabase.auth.getSession();
+export async function getAuthHeader() {
+  const { data } = await supabase.auth.getSession();
   const token = data.session?.access_token;
   return token ? { Authorization: `Bearer ${token}` } : {};
 }

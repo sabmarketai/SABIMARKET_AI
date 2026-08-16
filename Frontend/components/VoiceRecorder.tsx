@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Mic, Square, Check, Pencil, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ParsedClause, parseTranscript, clausesToTransactions } from "@/lib/parseTransaction";
-import { extractTranscriptRemote } from "@/lib/api";
+import { extractTranscriptRemote, transcribeAudioRemote } from "@/lib/api";
 import { useSabiMarketStore } from "@/lib/store";
 
 type RecordState = "idle" | "recording" | "reviewing";
@@ -51,24 +51,42 @@ export default function VoiceRecorder() {
   const [micError, setMicError] = useState<string | null>(null);
   const [isParsing, setIsParsing] = useState(false);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
   const addTransactions = useSabiMarketStore((s) => s.addTransactions);
 
   useEffect(() => {
     setSupportsSpeech(!!getSpeechRecognition());
   }, []);
 
-  function startRecording() {
+  async function startRecording() {
     setMicError(null);
     setTranscript("");
     setState("recording");
 
     const SpeechRecognitionCtor = getSpeechRecognition();
     if (!SpeechRecognitionCtor) {
-      // No Web Speech API (e.g. some Android WebViews / offline). We still
-      // let the trader "record" for the demo and fall back to a sample
-      // transcript so the flow can be shown end-to-end. Swap this for a
-      // server-side transcription call (Whisper-style) once the backend
-      // is wired up — see README.md.
+      // No Web Speech API (e.g. many mobile WebViews). Record real audio and
+      // send it to the backend for Whisper transcription instead — see
+      // transcribeAudioRemote in lib/api.ts.
+      if (!navigator.mediaDevices?.getUserMedia) {
+        // No microphone access at all — fall back to a sample transcript so
+        // the flow can still be shown end-to-end.
+        return;
+      }
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const recorder = new MediaRecorder(stream);
+        audioChunksRef.current = [];
+        recorder.ondataavailable = (e) => {
+          if (e.data.size > 0) audioChunksRef.current.push(e.data);
+        };
+        mediaRecorderRef.current = recorder;
+        recorder.start();
+      } catch {
+        setMicError("Couldn't reach the microphone. Check permissions and try again.");
+        setState("idle");
+      }
       return;
     }
 
@@ -101,8 +119,42 @@ export default function VoiceRecorder() {
     }
   }
 
+  function stopMediaRecorder(): Promise<Blob | null> {
+    const recorder = mediaRecorderRef.current;
+    if (!recorder || recorder.state === "inactive") return Promise.resolve(null);
+    return new Promise((resolve) => {
+      recorder.onstop = () => {
+        const blob = new Blob(audioChunksRef.current, { type: recorder.mimeType || "audio/webm" });
+        recorder.stream.getTracks().forEach((t) => t.stop());
+        resolve(blob);
+      };
+      recorder.stop();
+    });
+  }
+
   async function stopRecording(useSample = false) {
     recognitionRef.current?.stop();
+    const audioBlob = await stopMediaRecorder();
+    mediaRecorderRef.current = null;
+
+    if (audioBlob && !useSample) {
+      setState("reviewing");
+      setIsParsing(true);
+      const result = await transcribeAudioRemote(audioBlob);
+      if (result && result.transcript) {
+        setTranscript(result.transcript);
+        setClauses(result.clauses);
+      } else {
+        // Backend unreachable or heard nothing — fall back to a sample so the
+        // flow still completes for the demo.
+        const sample = SAMPLE_TRANSCRIPTS[Math.floor(Math.random() * SAMPLE_TRANSCRIPTS.length)];
+        setTranscript(sample);
+        setClauses(parseTranscript(sample));
+      }
+      setIsParsing(false);
+      return;
+    }
+
     const finalTranscript =
       useSample || !transcript
         ? SAMPLE_TRANSCRIPTS[Math.floor(Math.random() * SAMPLE_TRANSCRIPTS.length)]

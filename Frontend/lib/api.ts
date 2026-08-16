@@ -17,6 +17,16 @@ interface BackendResponse {
   transactions: BackendTransaction[];
 }
 
+function toClauses(transactions: BackendTransaction[]): ParsedClause[] {
+  return transactions.map((t) => ({
+    kind: t.action,
+    quantity: t.quantity,
+    item: t.item,
+    unit: t.unit || "pieces",
+    amount: t.amount,
+  }));
+}
+
 /**
  * Sends a transcript to the AI backend for structured extraction.
  * Returns null on any failure (offline, server down, bad response) so the
@@ -37,13 +47,34 @@ export async function extractTranscriptRemote(transcript: string): Promise<Parse
     if (!res.ok) return null;
 
     const data: BackendResponse = await res.json();
-    return data.transactions.map((t) => ({
-      kind: t.action,
-      quantity: t.quantity,
-      item: t.item,
-      unit: t.unit || "pieces",
-      amount: t.amount,
-    }));
+    return toClauses(data.transactions);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Sends recorded audio to the AI backend for Whisper transcription + extraction —
+ * used when the browser has no built-in speech recognition (e.g. many mobile
+ * WebViews). Returns null on any failure so the caller can fall back gracefully.
+ */
+export async function transcribeAudioRemote(
+  audio: Blob,
+): Promise<{ transcript: string; clauses: ParsedClause[] } | null> {
+  try {
+    const formData = new FormData();
+    formData.append("audio", audio, "recording.webm");
+
+    const res = await fetch(`${API_BASE_URL}/api/v1/voice/voice-transaction`, {
+      method: "POST",
+      body: formData,
+      // Whisper transcription plus a possible Render cold-start can take a while.
+      signal: AbortSignal.timeout(60000),
+    });
+    if (!res.ok) return null;
+
+    const data: BackendResponse = await res.json();
+    return { transcript: data.transcript, clauses: toClauses(data.transactions) };
   } catch {
     return null;
   }
