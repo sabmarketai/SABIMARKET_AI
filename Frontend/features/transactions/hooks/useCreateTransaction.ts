@@ -13,12 +13,12 @@ export const useCreateTransaction = () => {
   return useMutation<Transaction, Error, CreateTransactionPayload>({
     mutationFn: createTransaction,
 
-    onSuccess: () => {
+    onSuccess: async () => {
       // The backend syncs inventory as part of creating the transaction, so
       // we only need to refetch — never adjust inventory locally here.
-      queryClient.invalidateQueries({ queryKey: transactionKeys.list() });
-      queryClient.invalidateQueries({ queryKey: inventoryKeys.list() });
-      queryClient.invalidateQueries({ queryKey: dashboardKeys.overview() });
+     await  queryClient.invalidateQueries({ queryKey: transactionKeys.list() });
+      await queryClient.invalidateQueries({ queryKey: inventoryKeys.list() });
+      await queryClient.invalidateQueries({ queryKey: dashboardKeys.overview() });
     },
   });
 };

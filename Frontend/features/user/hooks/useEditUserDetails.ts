@@ -7,8 +7,8 @@ export const useEditUserDetails = () =>{
 
     return useMutation({
         mutationFn: editUserDetails,
-        onSuccess: () =>{
-            queryClient.invalidateQueries({queryKey: dashboardKeys.all})
+        onSuccess: async () =>{
+            await queryClient.invalidateQueries({queryKey: dashboardKeys.overview()})
         }
     })
 }
