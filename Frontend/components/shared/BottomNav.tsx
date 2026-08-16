@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LineChart, Package, Users2, Settings, Mic, Receipt } from "lucide-react";
+import {
+  Home,
+  LineChart,
+  Package,
+  Users2,
+  Settings,
+  Mic,
+  Receipt,
+} from "lucide-react";
 import clsx from "clsx";
 
 const TABS = [
@@ -10,13 +18,14 @@ const TABS = [
   { href: "/market", label: "Market", icon: LineChart },
   { href: "/inventory", label: "Inventory", icon: Package },
   { href: "/community", label: "Community", icon: Users2 },
-  { href: "/transactions", label: "Transactions", icon: Receipt},
+  { href: "/transactions", label: "Transactions", icon: Receipt },
 ] as const;
 
 export default function BottomNav() {
   const pathname = usePathname();
   const recordActive = pathname === "/record";
 
+  if (pathname === "/onboarding") return null;
   return (
     <>
       {/* Floating Record button */}
