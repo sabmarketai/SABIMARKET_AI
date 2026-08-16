@@ -13,6 +13,7 @@ export async function GET(req: Request) {
   );
 
   const data = await response.json();
+  console.log(data)
 
   return Response.json(data, {
     status: response.status,
