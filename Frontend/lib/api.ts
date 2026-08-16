@@ -29,7 +29,10 @@ export async function extractTranscriptRemote(transcript: string): Promise<Parse
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ transcript }),
-      signal: AbortSignal.timeout(5000),
+      // Render's free tier can take 50+ seconds to wake from an idle spin-down,
+      // so a short timeout here would fall back to the local parser on almost
+      // every cold request.
+      signal: AbortSignal.timeout(60000),
     });
     if (!res.ok) return null;
 

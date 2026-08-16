@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Pre-download the Whisper model at build time so a cold container start never has
+# to fetch it from Hugging Face — matches WHISPER_MODEL_SIZE=base set on Render.
+RUN python -c "from faster_whisper import WhisperModel; WhisperModel('base', device='cpu', compute_type='int8')"
+
 COPY main.py .
 COPY src ./src
 COPY data ./data
