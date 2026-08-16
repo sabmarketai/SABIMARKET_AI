@@ -19,6 +19,7 @@ export async function PATCH(req: Request) {
     body: JSON.stringify(body),
   });
   const data = await response.json();
+  console.log(data)
   return Response.json(data, {
     status: response.status,
   });

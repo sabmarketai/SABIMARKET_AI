@@ -31,7 +31,9 @@ export default function MarketPage() {
   const [itemFilter, setItemFilter] = useState("");
   const [insightItem, setInsightItem] = useState("");
   const [insightInput, setInsightInput] = useState("");
-  const [recommendAction, setRecommendAction] = useState<"buy" | "sell" | null>(null);
+  const [recommendAction, setRecommendAction] = useState<"buy" | "sell" | null>(
+    null,
+  );
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [form, setForm] = useState({ marketName: "", itemName: "", price: "" });
@@ -59,7 +61,10 @@ export default function MarketPage() {
     data: recommendation,
     isLoading: isRecommendLoading,
     isError: isRecommendError,
-  } = useRecommendMarket(insightItem || undefined, recommendAction ?? undefined);
+  } = useRecommendMarket(
+    insightItem || undefined,
+    recommendAction ?? undefined,
+  );
 
   const insights = insightData
     ? isAllInsightsResponse(insightData)
@@ -95,8 +100,8 @@ export default function MarketPage() {
             Smart Market Intelligence
           </h1>
           <p className="mt-1 text-sm text-indigo/50">
-            Crowdsourced prices from nearby markets — know where to buy and
-            sell today.
+            Crowdsourced prices from nearby markets — know where to buy and sell
+            today.
           </p>
         </div>
         <Button
@@ -134,7 +139,9 @@ export default function MarketPage() {
           </div>
         )}
         {isInsightError && (
-          <p className="mt-3 text-sm text-red">Could not load insight for this item.</p>
+          <p className="mt-3 text-sm text-red">
+            Could not load insight for this item.
+          </p>
         )}
         {!isInsightLoading && insightItem && insights.length > 0 && (
           <div className="mt-3 space-y-3">
@@ -170,19 +177,33 @@ export default function MarketPage() {
               </div>
             )}
             {isRecommendError && (
-              <p className="mt-3 text-sm text-red">
+              <p className="mt-3 text-sm text-black text-center">
                 Couldn&apos;t get a recommendation right now.
               </p>
             )}
             {recommendation && (
-              <div className="mt-3 rounded-lg bg-amber/15 p-4">
-                <p className="text-sm font-semibold text-secondary-foreground">
-                  {recommendation.action === "buy" ? "Buy" : "Sell"} at{" "}
-                  {recommendation.recommended_market}
-                </p>
-                <p className="mt-1 text-sm text-secondary-foreground">
-                  {recommendation.reason}
-                </p>
+              <div className="relative mt-3 overflow-hidden rounded-xl bg-primary p-4 shadow-sm">
+                {/* AI glint */}
+                <div className="pointer-events-none absolute inset-0 -translate-x-full animate-[shimmer_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
+
+                <div className="relative">
+                  <div className="flex items-center gap-2">
+                    <div className="flex size-7 items-center justify-center rounded-lg bg-blue-400/30">
+                      <Sparkles className="size-3.5 text-blue-100" />
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-semibold text-white">
+                        {recommendation.action === "buy" ? "Buy" : "Sell"} at{" "}
+                        {recommendation.recommended_market}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-3 text-sm leading-relaxed text-blue-50">
+                    {recommendation.reason}
+                  </p>
+                </div>
               </div>
             )}
           </div>
@@ -277,25 +298,35 @@ export default function MarketPage() {
             <label className="text-sm font-medium text-foreground">Item</label>
             <Input
               value={form.itemName}
-              onChange={(e) => setForm((f) => ({ ...f, itemName: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, itemName: e.target.value }))
+              }
               placeholder="e.g. Orange"
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-foreground">Market</label>
+            <label className="text-sm font-medium text-foreground">
+              Market
+            </label>
             <Input
               value={form.marketName}
-              onChange={(e) => setForm((f) => ({ ...f, marketName: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, marketName: e.target.value }))
+              }
               placeholder="e.g. Mile 12"
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-foreground">Price (₦)</label>
+            <label className="text-sm font-medium text-foreground">
+              Price (₦)
+            </label>
             <Input
               type="number"
               min={0}
               value={form.price}
-              onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, price: e.target.value }))
+              }
               placeholder="0.00"
             />
           </div>
